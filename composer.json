@@ -50,8 +50,8 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ],
-        "phpcs": "phpcs . --ignore=*/vendor/*,*/tests/* --warning-severity=0 --colors --standard=ruleset.phpcs.xml -s",
-        "phpcbf": "phpcbf . --ignore=*/vendor/*,*/tests/* --standard=ruleset.phpcs.xml",
+        "phpcs": "phpcs . --ignore=*/vendor/*,*/tests/* --warning-severity=0 --colors --standard=phpcs.xml -s",
+        "phpcbf": "phpcbf . --ignore=*/vendor/*,*/tests/* --standard=phpcs.xml",
         "phpunit": "php artisan test"
     },
     "extra": {
