@@ -10,12 +10,12 @@ class CreatePondokTable extends Migration
     {
         Schema::create('pondok', function (Blueprint $table) {
 
-		$table->integer('id',);
-		$table->string('nama');
-		$table->text('alamat');
-		$table->text('alamat_maps');
-		$table->primary('id');
-
+            $table->id()->autoIncrement();
+            $table->string('nama');
+            $table->text('alamat');
+            $table->text('alamat_maps');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

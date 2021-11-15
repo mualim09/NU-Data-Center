@@ -10,12 +10,11 @@ class CreateWilayahTable extends Migration
     {
         Schema::create('wilayah', function (Blueprint $table) {
 
-		$table->integer('id',);
-		$table->string('kabupaten');
-		$table->string('kecamatan');
-		$table->string('kelurahan');
-		$table->primary('id');
-
+            $table->id();
+            $table->string('kabupaten');
+            $table->string('kecamatan');
+            $table->string('kelurahan');
+            $table->timestamps();
         });
     }
 

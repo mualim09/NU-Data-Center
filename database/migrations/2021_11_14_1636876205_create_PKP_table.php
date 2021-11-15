@@ -4,11 +4,11 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePKPTable extends Migration
+class CreatePkpTable extends Migration
 {
     public function up()
     {
-        Schema::create('PKP', function (Blueprint $table) {
+        Schema::create('pkp', function (Blueprint $table) {
 
             $table->id()->autoIncrement();
             $table->string('angkatan_pkp');
@@ -16,13 +16,11 @@ class CreatePKPTable extends Migration
             $table->datetime('waktu_kegiatan')->nullable();
             $table->timestamps();
             $table->softDeletes();
-            
-            $table->primary('id');
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('PKP');
+        Schema::dropIfExists('pkp');
     }
 }

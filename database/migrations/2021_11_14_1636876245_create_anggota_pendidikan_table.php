@@ -10,13 +10,14 @@ class CreateAnggotaPendidikanTable extends Migration
     {
         Schema::create('anggota_pendidikan', function (Blueprint $table) {
 
-		$table->integer('id',);
-		$table->string('pendidikan_terakhir');
-		$table->string('jurusan');
-		$table->string('pondok_id');
-		$table->string('pendidikan_pesantren');
-		$table->primary('id');
-		$table->foreign('pondok_id')->references('id')->on('pondok');
+            $table->id();
+            $table->string('pendidikan_terakhir');
+            $table->string('jurusan');
+            $table->bigInteger('pondok_id')->unsigned();
+            $table->string('pendidikan_pesantren');
+            $table->foreign('pondok_id')->references('id')->on('pondok');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -10,12 +10,12 @@ class CreateAnggotaPekerjaanTable extends Migration
     {
         Schema::create('anggota_pekerjaan', function (Blueprint $table) {
 
-		$table->integer('id',);
-		$table->string('jenis_profesi');
-		$table->text('alamat_kantor');
-		$table->string('penghasilan_perbulan');
-		$table->primary('id');
-
+            $table->id();
+            $table->string('jenis_profesi');
+            $table->text('alamat_kantor');
+            $table->string('penghasilan_perbulan');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
