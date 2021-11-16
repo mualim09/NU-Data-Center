@@ -10,4 +10,14 @@ class AnggotaPendidikan extends Model
     use HasFactory;
 
     protected $table = 'anggota_pendidikan';
+
+    public function pondok()
+    {
+        return $this->belongsTo(Pondok::class, 'pondok_id', 'id');
+    }
+
+    public function anggota()
+    {
+        return $this->hasOne(Anggota::class, 'anggota_pendidikan_id', 'id');
+    }
 }

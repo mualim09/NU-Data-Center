@@ -10,4 +10,9 @@ class AnggotaPekerjaan extends Model
     use HasFactory;
 
     protected $table = 'anggota_pekerjaan';
+
+    public function anggota()
+    {
+        return $this->hasOne(Anggota::class, 'anggota_pekerjaan_id', 'id')
+    }
 }

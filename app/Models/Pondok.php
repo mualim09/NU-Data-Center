@@ -10,4 +10,9 @@ class Pondok extends Model
     use HasFactory;
 
     protected $table = 'pondok';
+
+    public function anggotaPendidikan()
+    {
+        return $this->hasMany(AnggotaPendidikan::class, 'pondok_id', 'id');
+    }
 }

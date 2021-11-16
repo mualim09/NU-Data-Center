@@ -10,4 +10,9 @@ class AnggotaOrganisasiLain extends Model
     use HasFactory;
 
     protected $table = 'anggota_organisasi_lain';
+
+    public function anggota()
+    {
+        return $this->belongsTo(Anggota::class, 'anggota_id', 'id');
+    }
 }

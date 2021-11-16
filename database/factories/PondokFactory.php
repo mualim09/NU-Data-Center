@@ -14,7 +14,7 @@ class PondokFactory extends Factory
     public function definition()
     {
         return [
-            //
+            
         ];
     }
 }
