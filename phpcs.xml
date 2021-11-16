@@ -3,6 +3,9 @@
     <exclude-pattern>*/tests/*</exclude-pattern>
     <exclude-pattern>*/database/migrations/*</exclude-pattern>
     <exclude-pattern>*/bootstrap/cache/*</exclude-pattern>
+    <exclude-pattern>public/*</exclude-pattern>
+    <exclude-pattern>*/vendor/*</exclude-pattern>
+    <exclude-pattern>*/framework/*</exclude-pattern>
     <rule ref="PSR12">
         <exclude name="Generic.Files.LineEndings"/>
         <exclude name="PSR1.Classes.ClassDeclaration.MissingNamespace"/>
