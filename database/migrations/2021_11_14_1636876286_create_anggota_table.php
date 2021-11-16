@@ -16,7 +16,7 @@ class CreateAnggotaTable extends Migration
 			$table->string('nama');
 			$table->string('jenis_kelamin',20);
 			$table->string('tempat_lahir');
-			$table->datetime('tanggal_lahir');
+			$table->date('tanggal_lahir');
 			$table->string('no_telepon',20);
 			$table->string('email',100);
 			$table->text('foto_diri');
