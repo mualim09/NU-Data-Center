@@ -14,8 +14,20 @@ class AnggotaPendidikanFactory extends Factory
     public function definition()
     {
         return [
-            'pendidikan_terakhir' => 'SMA',
-            'jurusan' => 'IPA',
+            'pendidikan_terakhir' => collect(['SD/MI', 'SMP/MTs', 'SMA/MA', 'SMK/MAK', 'S1', 'S2', 'S3'])->random(),
+            'jurusan' => collect(
+                [
+                    'IPA',
+                    'IPS',
+                    'Ekonomi Bisnis',
+                    'Manajemen',
+                    'Teknik Sepeda Motor',
+                    'Otomotif',
+                    'Pendidikan',
+                    'Tata Boga',
+                    'Tata Busana'
+                ]
+            )->random(),
             'pendidikan_pesantren' => $this->faker->randomDigit() . ' Tahun'
         ];
     }

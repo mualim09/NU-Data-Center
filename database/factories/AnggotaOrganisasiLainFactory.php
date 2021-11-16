@@ -16,8 +16,8 @@ class AnggotaOrganisasiLainFactory extends Factory
         return [
             'nama_organisasi' => $this->faker->city() . ' Community',
             'jabatan' => collect(['Anggota', 'Pimpinan', 'Ketua', 'Sekretaris', 'Bendahara'])->random(),
-            'masa_jabatan_awal' => $this->faker->date('Y-m-d'),
-            'masa_jabatan_akhir' => $this->faker->date('Y-m-d'),
+            'masa_jabat_awal' => $this->faker->date('Y-m-d'),
+            'masa_jabat_akhir' => $this->faker->date('Y-m-d'),
         ];
     }
 }
