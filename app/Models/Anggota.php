@@ -31,4 +31,8 @@ class Anggota extends Model
     {
         return $this->belongsTo(AnggotaPekerjaan::class, 'anggota_pekerjaan_id', 'id');
     }
+    public function pkp()
+    {
+        return $this->belongsTo(PKP::class, 'pkp_id', 'id');
+    }
 }

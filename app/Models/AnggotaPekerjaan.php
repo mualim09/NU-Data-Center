@@ -15,6 +15,6 @@ class AnggotaPekerjaan extends Model
 
     public function anggota()
     {
-        return $this->hasOne(Anggota::class, 'anggota_pekerjaan_id', 'id')
+        return $this->hasOne(Anggota::class, 'anggota_pekerjaan_id', 'id');
     }
 }
