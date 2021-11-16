@@ -14,7 +14,9 @@ class PKPFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'angkatan_pkp' => $this->faker->randomDigit(),
+            'lokasi_kegiatan' => $this->faker->city(),
+            'waktu_kegiatan' => $this->faker->dateTime()
         ];
     }
 }

@@ -14,7 +14,9 @@ class AnggotaPendidikanFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'pendidikan_terakhir' => 'SMA',
+            'jurusan' => 'IPA',
+            'pendidikan_pesantren' => $this->faker->randomDigit() . ' Tahun'
         ];
     }
 }

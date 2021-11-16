@@ -14,7 +14,10 @@ class AnggotaOrganisasiNuFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'struktur_organisasi' => collect(['MWC NU', 'PCNU', 'PBNU', 'LPNU', 'LAZISNU', 'PCINU', 'PRNU'])->random(),
+            'jabatan' => collect(['Anggota', 'Pimpinan', 'Ketua', 'Sekretaris', 'Bendahara'])->random(),
+            'masa_jabatan_awal' => $this->faker->date('Y-m-d'),
+            'masa_jabatan_akhir' => $this->faker->date('Y-m-d'),
         ];
     }
 }
