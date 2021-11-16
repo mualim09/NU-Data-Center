@@ -10,6 +10,8 @@ class AnggotaOrganisasiNu extends Model
     use HasFactory;
 
     protected $table = 'anggota_organisasi_nu';
+    protected $guard = ['id'];
+
 
     public function anggota()
     {
