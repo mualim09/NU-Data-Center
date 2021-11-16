@@ -6,7 +6,7 @@
 <header class="bg-blue py-6"></header>
 <div class="container-fluid mt--6">
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg">
             <div class="card">
                 <div class="card-header">
                     <div class="row align-content-between">
@@ -19,42 +19,18 @@
                     </div>
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-striped table-flush">
+                    <table class="table table-striped table-bordered table-flush yajra-datatable">
                         <thead class="thead-light">
                             <tr>
-                                <th>No.</th>
-                                <th>Nama</th>
-                                <th>Jenis Kelamin</th>
-                                <th>Alamat</th>
-                                <th>No KTP</th>
-                                <th>No Telepon</th>
+                                <th>No</th>
+                                <th>Name</th>
+                                <th>Gender</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1.</td>
-                                <td>Badar Wildanie</td>
-                                <td>L</td>
-                                <td>Jawa Timur</td>
-                                <td>3507100123123132</td>
-                                <td>082228111059</td>
-                            </tr>
-                            <tr>
-                                <td>1.</td>
-                                <td>Badar Wildanie</td>
-                                <td>L</td>
-                                <td>Jawa Timur</td>
-                                <td>3507100123123132</td>
-                                <td>082228111059</td>
-                            </tr>
-                            <tr>
-                                <td>1.</td>
-                                <td>Badar Wildanie</td>
-                                <td>L</td>
-                                <td>Jawa Timur</td>
-                                <td>3507100123123132</td>
-                                <td>082228111059</td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -64,3 +40,30 @@
 </div>
 
 @endsection();
+
+
+@section('js_scripts')
+<script src="{{ asset('thirdparty/jquery-datatables/jquery.datatables.min.js') }}"></script>
+<script>
+    $(function() {
+        let table = $('.yajra-datatable').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: "{{ route('user.index') }}",
+            columns: [
+                {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                {data: 'name', name: 'name'},
+                {data: 'gender', name: 'gender'},
+                {data: 'email', name: 'email'},
+                {data: 'phone', name: 'phone'},
+                {
+                    data: 'action', 
+                    name: 'action', 
+                    orderable: true, 
+                    searchable: true
+                },
+            ]
+        })
+    })
+</script>
+@endsection

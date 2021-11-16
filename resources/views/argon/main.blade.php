@@ -33,6 +33,7 @@
     <!-- Argon CSS -->
     <link rel="stylesheet" href="{{ asset('css/argon.css?v=1.2.0') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+    @yield('css_extend')
 </head>
 
 <body>
@@ -125,6 +126,8 @@
     <script src="{{ asset('thirdparty/chart.js/dist/Chart.extension.js') }}"></script>
     <!-- Argon JS -->
     <script src="{{ asset('js/argon.js?v=1.2.0') }}"></script>
+
+    @yield('js_scripts')
 </body>
 
 </html>
