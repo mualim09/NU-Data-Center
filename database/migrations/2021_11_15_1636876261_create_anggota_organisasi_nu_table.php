@@ -11,7 +11,7 @@ class CreateAnggotaOrganisasiNuTable extends Migration
         Schema::create('anggota_organisasi_nu', function (Blueprint $table) {
 
             $table->id();
-            $table->bigInteger('anggota_id')->unsigned();
+            $table->bigInteger('anggota_id')->unsigned()->nullable();
             $table->string('struktur_organisasi');
             $table->string('jabatan');
             $table->date('masa_jabat_awal');

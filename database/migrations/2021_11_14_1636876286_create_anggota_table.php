@@ -29,12 +29,12 @@ class CreateAnggotaTable extends Migration
 			$table->string('alamat_maps');
 			$table->string('status_menikah');
 			$table->integer('jumlah_anggota_keluarga',);
-			$table->bigInteger('anggota_pendidikan_id')->unsigned();
-			$table->bigInteger('anggota_pekerjaan_id')->unsigned();
+			$table->bigInteger('anggota_pendidikan_id')->unsigned()->nullable();
+			$table->bigInteger('anggota_pekerjaan_id')->unsigned()->nullable();
 			$table->string('aktifitas_nu');
 			$table->string('jabatan_nu');
 			$table->string('asuransi_kesehatan');
-			$table->bigInteger('pkp_id')->unsigned();
+			$table->bigInteger('pkp_id')->unsigned()->nullable();
 			$table->foreign('pkp_id')->references('id')->on('pkp');
 			$table->foreign('anggota_pendidikan_id')->references('id')->on('anggota_pendidikan');
 			$table->foreign('anggota_pekerjaan_id')->references('id')->on('anggota_pekerjaan');
