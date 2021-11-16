@@ -13,6 +13,14 @@
 	z-index: 999 !important;
 }
 
+.card-header label {
+	font-size: 10px;
+	margin: 0;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: rgb(162, 162, 162)
+}
+
 
 .navbar .main-nav a.nav-link {
     background-color: white;

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\DataAnggotaController;
+use App\Models\Anggota;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -16,21 +18,7 @@ use Yajra\DataTables\DataTables;
 |
 */
 
-Route::get('/', function () {
-    return view('administrator.data_anggota.list');
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('data_anggota/list', [DataAnggotaController::class, 'list'])->name('data_anggota.list');
+    Route::resource('data_anggota', DataAnggotaController::class);
 });
-
-
-Route::get('getUser', function (Request $request) {
-    if ($request->ajax()) {
-        $data = User::latest()->get();
-        return DataTables::of($data)
-            ->addIndexColumn()
-            ->addColumn('action', function ($row) {
-                $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
-                return $actionBtn;
-            })
-            ->rawColumns(['action'])
-            ->make(true);
-    }
-})->name('user.index');
