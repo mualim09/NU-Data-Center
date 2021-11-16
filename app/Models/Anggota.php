@@ -12,6 +12,8 @@ class Anggota extends Model
     protected $table = 'anggota';
     protected $guard = ['id'];
 
+    protected $with = ['pendidikan', 'pekerjaan', 'pkp'];
+
     public function organisasiLain()
     {
         return $this->hasMany(AnggotaOrganisasiLain::class, 'anggota_id', 'id');
