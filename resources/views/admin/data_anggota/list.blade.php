@@ -10,10 +10,10 @@
             <div class="card">
                 <div class="card-header py-2 px-4">
                     <div class="row align-items-center justify-content-between">
-                        <div class="col-auto">
+                        <div class="col-md-auto">
                             <h3 class="card-title mb-0 mr-4">Daftar Anggota</h3>
                         </div>
-                        <div class="col">
+                        <div class="col-md">
                             <div class="row align-items-center">
                                 <div class="col-md pl-md-1 pr-md-1">
                                     <div class="form-group mb-0">
@@ -65,7 +65,7 @@
                                     </div>
                                 </div>
                                 
-                                <div class="col-md-2 pl-md-1">
+                                <div class="col-md-2 pl-md-1 pr-md-1">
                                     <div class="form-group mb-0">
                                         <label for="limit">Limit baris</label>
                                         <div class="input-group input-group-merge input-group-sm">
@@ -76,6 +76,14 @@
                                             </div>
                                             <input type="number" value="50" min="0" max="500" step="5" class="form-control form-control-sm filter-limit">
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-auto">
+                                    <div class="form-group mb-0 text-center text-md-left mt-2 mt-md-0">
+                                        <a href="{{ route('admin.data_anggota.create') }}" class="btn btn-success rounded-circle btn-sm" data-toggle='tooltip' title="Tambah data anggota" data-placement="left">
+                                            <i class="fas fa-plus-circle"></i>
+                                        </a>
+                                        <span class="d-inline-block d-md-none text-uppercase font-weight-bolder text-xs">Tambah data Anggota</span>
                                     </div>
                                 </div>
                             </div>
