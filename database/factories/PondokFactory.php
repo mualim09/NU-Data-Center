@@ -14,7 +14,7 @@ class PondokFactory extends Factory
     public function definition()
     {
         return [
-            'nama' => 'PP. ' . $this->faker->titleMale(),
+            'nama' => 'PP. ' . $this->faker->firstName() . ' ' . $this->faker->lastName() . ' ' . $this->faker->city(),
             'alamat' => $this->faker->address(),
             'alamat_maps' => $this->faker->latitude() . '|' . $this->faker->longitude()
         ];
