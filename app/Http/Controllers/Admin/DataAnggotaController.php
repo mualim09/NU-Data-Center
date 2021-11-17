@@ -57,7 +57,8 @@ class DataAnggotaController extends Controller
      */
     public function create()
     {
-        //
+        $data['anggota'] = Anggota::find(1);
+        return view('admin.data_anggota.create', $data);
     }
 
     /**
