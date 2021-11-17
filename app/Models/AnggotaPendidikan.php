@@ -11,6 +11,7 @@ class AnggotaPendidikan extends Model
 
     protected $table = 'anggota_pendidikan';
     protected $guard = ['id'];
+    protected $with = ['pondok'];
 
 
     public function pondok()

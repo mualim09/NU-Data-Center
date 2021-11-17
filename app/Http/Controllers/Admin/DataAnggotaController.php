@@ -79,7 +79,8 @@ class DataAnggotaController extends Controller
      */
     public function show(Anggota $anggota)
     {
-        //
+        $data['anggota'] = $anggota;
+        return view('admin.data_anggota.show', $data);
     }
 
     /**

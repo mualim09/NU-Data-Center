@@ -13,6 +13,14 @@
 	z-index: 999 !important;
 }
 
+.card .table td, .card .table th {
+	padding: 1rem;
+}
+.table-sm td, .table-sm th {
+	padding: 12px !important;
+}
+
+
 .card-header label {
 	font-size: 10px;
 	margin: 0;

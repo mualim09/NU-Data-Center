@@ -23,7 +23,7 @@
         <td style="vertical-align: middle">{{ $row->jabatan_nu }} di {{ $row->aktifitas_nu }}</td>
         <td>
             <div class="d-flex flex-row align-items-center">
-                <a href="#" class="btn mr-1 mb-1 btn-secondary rounded rounded-circle btn-sm p-1" data-placement='left' title='Lihat detail'>
+                <a href="{{ route('admin.data_anggota.show', ['anggota' => $row->id]) }}" class="btn mr-1 mb-1 btn-secondary rounded rounded-circle btn-sm p-1" data-placement='left' title='Lihat detail'>
                     <i class="fas fa-eye" style="width: 18px"></i>
                 </a>
                 <a href="#" class="btn mr-1 mb-1 btn-secondary rounded rounded-circle btn-sm p-1" data-placement='left' title='Edit'>
