@@ -1,4 +1,4 @@
-<nav class="navbar navbar-top navbar-expand navbar-dark bg-default border-bottom">
+<nav class="navbar navbar-top navbar-expand navbar-dark bg-default border-bottom py-2">
     <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Navbar links -->
@@ -16,7 +16,7 @@
 
                 
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="nav-link text-sm">
                         Data Anggota
                     </a>
                 </li>
