@@ -18,6 +18,7 @@ use Yajra\DataTables\DataTables;
 |
 */
 
+Route::get('/', [DataAnggotaController::class, 'index']);
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('data_anggota/list', [DataAnggotaController::class, 'list'])->name('data_anggota.list');
     Route::resource('data_anggota', DataAnggotaController::class)->parameter('data_anggota', 'anggota');
