@@ -14,12 +14,8 @@
                     </div>
                 </li>
 
+                @yield('navbar-item')
                 
-                <li class="nav-item">
-                    <a href="#" class="nav-link text-sm">
-                        Data Anggota
-                    </a>
-                </li>
             </ul>
             <ul class="navbar-nav align-items-center  ml-auto ml-md-0">
                 <li class="nav-item dropdown">

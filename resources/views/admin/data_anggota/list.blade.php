@@ -1,6 +1,15 @@
 @extends('argon.main')
 
 
+@section('navbar-item')
+    <li class="nav-item">
+        <a href="#" class="nav-link text-sm">
+            Data Anggota
+        </a>
+    </li>
+@endsection
+
+
 @section('content')
 
 <header class="bg-blue py-6"></header>
