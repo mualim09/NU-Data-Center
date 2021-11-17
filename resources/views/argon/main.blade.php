@@ -59,19 +59,19 @@
                     <!-- Nav items -->
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" href="https://www.lpnumalang.or.id/admin">
+                            <a class="nav-link {{ (request()->routeIs('admin.data_anggota.*')) ? 'active' : '' }}" href="{{ route('admin.data_anggota.index') }}">
                                 <i class="fas fa-users text-primary"></i>
                                 <span class="nav-link-text">Data Anggota</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="https://www.lpnumalang.or.id/admin">
+                            <a class="nav-link" href="#">
                                 <i class="fas fa-clipboard text-primary"></i>
                                 <span class="nav-link-text">Laporan</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="https://www.lpnumalang.or.id/admin">
+                            <a class="nav-link" href="#">
                                 <i class="fas fa-chart-bar text-primary"></i>
                                 <span class="nav-link-text">Statistik</span>
                             </a>
