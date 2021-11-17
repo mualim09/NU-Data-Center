@@ -16,7 +16,12 @@ class AnggotaPekerjaanFactory extends Factory
         return [
             'jenis_profesi' => collect(['Guru', 'Petani', 'Wiraswasta', 'Buruh'])->random(),
             'alamat_kantor' => $this->faker->address(),
-            'penghasilan_perbulan' => $this->faker->randomDigit() * 1000000
+            'penghasilan_perbulan' => collect([
+                '< Rp. 1.000.000',
+                '> Rp. 1.000.000 dan < Rp. 5.000.000,-',
+                '> Rp. 5.000.000 dan < Rp. 15.000.000,-',
+                '> Rp. 15.000.000',
+            ])->random()
         ];
     }
 }
