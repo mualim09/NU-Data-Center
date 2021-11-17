@@ -2,6 +2,11 @@
 
 @section('navbar-item')
     <li class="nav-item">
+        <a href="{{ route('admin.data_anggota.index') }}" class="nav-link text-sm rounded-circle" style="padding: 8px 12px">
+            <i class="fas fa-arrow-circle-left"></i> 
+        </a>
+    </li>
+    <li class="nav-item">
         <a href="#" class="nav-link text-sm">
             Data Anggota
         </a>
