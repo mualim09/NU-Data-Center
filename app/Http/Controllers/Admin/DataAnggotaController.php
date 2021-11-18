@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Anggota;
+use App\Models\Wilayah;
 use Illuminate\Http\Request;
 
 class DataAnggotaController extends Controller
@@ -58,6 +59,9 @@ class DataAnggotaController extends Controller
     public function create()
     {
         $data['anggota'] = Anggota::find(1);
+        $data['dataKecamatan'] = Wilayah::orderBy('kecamatan', 'asc')->select('kecamatan')->distinct()->get()->map(function ($item) {
+            return $item->kecamatan;
+        });
         return view('admin.data_anggota.create', $data);
     }
 

@@ -153,12 +153,13 @@
                             </label>
                             <div class="input-group input-group-merge">
                                 <select name="kabupaten" class="form-control">
-                                    <option value="Kabupaten Malang">Kabupaten Malang</option>
+                                    <option value="Malang">Malang</option>
                                 </select>
                                 <select name="kecamatan" class="form-control">
-                                    <option value="Ampelgading">Ampelgading</option>
-                                    <option value="Donomulyo">Donomulyo</option>
-                                    <option value="Gondanglegi">Gondanglegi</option>
+                                    <option value="---">---</option>
+                                    @foreach ($dataKecamatan as $kecamatan)
+                                        <option value="{{ $kecamatan }}">{{ ucwords(strtolower($kecamatan)) }}</option>
+                                    @endforeach
                                 </select>
                                 <select name="kelurahan" class="form-control">
                                     <option value="Putat Lor">Putat Lor</option>
@@ -523,14 +524,9 @@
                                     </tr>
                                 </thead>
                                 <tbody id="load-organisasi_nu">
-                                    @foreach ($anggota->organisasiNu as $organisasi)
-                                        <tr>
-                                            <td>{{ $organisasi->struktur_organisasi }}</td>
-                                            <td>{{ $organisasi->jabatan }}</td>
-                                            <td>{{ $organisasi->masa_jabat_awal }}</td>
-                                            <td>{{ $organisasi->masa_jabat_akhir }}</td>
-                                        </tr>
-                                    @endforeach
+                                    <tr>
+                                        <td colspan="99" class="text-center">Tidak ada data</td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -556,14 +552,9 @@
                                         </tr>
                                     </thead>
                                     <tbody id="load-organisasi_lain">
-                                        @foreach ($anggota->organisasiLain as $organisasi)
                                         <tr>
-                                            <td>{{ $organisasi->nama_organisasi }}</td>
-                                            <td>{{ $organisasi->jabatan }}</td>
-                                            <td>{{ $organisasi->masa_jabat_awal }}</td>
-                                            <td>{{ $organisasi->masa_jabat_akhir }}</td>
+                                            <td colspan="99" class="text-center">Tidak ada data</td>
                                         </tr>
-                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -781,5 +772,33 @@
                 }
             }
         })
+        $("select[name='kecamatan']").change(function (e) {
+            value = $(this).val()
+            if (value != '') {
+                getKelurahan(value)
+            }
+        })
+        function getKelurahan(kecamatan) {
+            $.ajax({
+                type: "GET",
+                url: "{{ route('wilayah.index') }}",
+                data: {
+                    kecamatan: kecamatan,
+                    mode: 'kelurahan'
+                },
+                dataType: "json",
+            })
+            .done(function (data) {
+                if (data.status == 'success') {
+                    $("select[name='kelurahan']").html(`<option value=''>---</option>`)
+                    data.data.forEach(function (wilayah) {
+                        option = document.createElement('option')
+                        option.value = wilayah.kelurahan
+                        option.innerHTML = wilayah.kelurahan.toLowerCase().replace(/\b[a-z]/g, letter => letter.toUpperCase())
+                        $("select[name='kelurahan']").append(option)
+                    })
+                }
+            })
+        }
     </script>
 @endsection
