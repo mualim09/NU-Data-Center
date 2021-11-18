@@ -14,8 +14,8 @@ class CreateAnggotaOrganisasiLainTable extends Migration
             $table->bigInteger('anggota_id')->unsigned()->nullable();
             $table->string('nama_organisasi');
             $table->string('jabatan');
-            $table->date('masa_jabat_awal');
-            $table->date('masa_jabat_akhir');
+            $table->date('masa_jabat_awal')->nullable();
+            $table->date('masa_jabat_akhir')->nullable();
             $table->foreign('anggota_id')->references('id')->on('anggota');
             $table->timestamps();
             $table->softDeletes();
