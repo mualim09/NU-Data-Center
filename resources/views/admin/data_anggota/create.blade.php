@@ -353,7 +353,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="row mb-4 mt-5">
                         <div class="col">
                             <div style="color: #cac3d5" class="text-xs text-uppercase font-weight-bolder">
@@ -521,6 +520,7 @@
                                         <th>Jabatan</th>
                                         <th>Masa jabat awal</th>
                                         <th>Masa jabat akhir</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody id="load-organisasi_nu">
@@ -541,23 +541,22 @@
                                 <i class="fas fa-plus"></i>
                                 Tambah data
                             </button>
-                            <div class="font-weight-bold">
-                                <table class="table table-striped table-sm">
-                                    <thead class="thead-light">
-                                        <tr>
-                                            <th>Organisasi</th>
-                                            <th>Jabatan</th>
-                                            <th>Masa jabat awal</th>
-                                            <th>Masa jabat akhir</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="load-organisasi_lain">
-                                        <tr>
-                                            <td colspan="99" class="text-center">Tidak ada data</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                            <table class="table table-striped table-sm">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>Organisasi</th>
+                                        <th>Jabatan</th>
+                                        <th>Masa jabat awal</th>
+                                        <th>Masa jabat akhir</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="load-organisasi_lain">
+                                    <tr>
+                                        <td colspan="99" class="text-center">Tidak ada data</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -581,70 +580,72 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md">
-                            <div class="form-group">
-                                <label class="form-control-label">Struktur Organisasi</label>
-                                <div class="input-group input-group-merge">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            <i class="fas fa-sitemap"></i> 
-                                        </span>
+                    <form>
+                        <div class="row">
+                            <div class="col-md">
+                                <div class="form-group">
+                                    <label class="form-control-label">Struktur Organisasi</label>
+                                    <div class="input-group input-group-merge">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="fas fa-sitemap"></i> 
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control" name="struktur_organisasi" placeholder="Misalnya: PCNU, MWCNU, LPNU, PRNU ...">
                                     </div>
-                                    <input type="text" class="form-control" name="struktur_organisasi" placeholder="Misalnya: PCNU, MWCNU, LPNU, PRNU ...">
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-group">
+                                    <label class="form-control-label">Jabatan</label>
+                                    <div class="input-group input-group-merge">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="fas fa-user-tie"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control" name="jabatan" placeholder="Tuliskan jabatan...">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md">
-                            <div class="form-group">
-                                <label class="form-control-label">Jabatan</label>
-                                <div class="input-group input-group-merge">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            <i class="fas fa-user-tie"></i>
-                                        </span>
+                        <div class="row">
+                            <div class="col-md">
+                                <div class="form-group">
+                                    <label class="form-control-label">Masa jabat awal</label>
+                                    <div class="input-group input-group-merge">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="fas fa-calendar"></i> 
+                                            </span>
+                                        </div>
+                                        <input type="date" class="form-control" name="masa_jabat_awal">
                                     </div>
-                                    <input type="text" class="form-control" name="jabatan" placeholder="Tuliskan jabatan...">
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-group">
+                                    <label class="form-control-label">Masa jabat akhir</label>
+                                    <div class="input-group input-group-merge">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="fas fa-user-tie"></i>
+                                            </span>
+                                        </div>
+                                        <input type="date" class="form-control" name="masa_jabat_akhir">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md">
-                            <div class="form-group">
-                                <label class="form-control-label">Masa jabat awal</label>
-                                <div class="input-group input-group-merge">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            <i class="fas fa-calendar"></i> 
-                                        </span>
-                                    </div>
-                                    <input type="date" class="form-control" name="masa_jabat_awal">
-                                </div>
+                        <div class="row mt-2">
+                            <div class="col">
+                                <button type="submit" class="btn btn-primary btn-block">
+                                    <i class="fas fa-paper-plane mr-2"></i>
+                                    Tambahkan
+                                </button>
                             </div>
                         </div>
-                        <div class="col-md">
-                            <div class="form-group">
-                                <label class="form-control-label">Masa jabat akhir</label>
-                                <div class="input-group input-group-merge">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            <i class="fas fa-user-tie"></i>
-                                        </span>
-                                    </div>
-                                    <input type="date" class="form-control" name="masa_jabat_akhir">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mt-2">
-                        <div class="col">
-                            <button type="submit" class="btn btn-primary btn-block">
-                                <i class="fas fa-paper-plane mr-2"></i>
-                                Tambahkan
-                            </button>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -661,70 +662,72 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md">
-                            <div class="form-group">
-                                <label class="form-control-label">Nama Organisasi</label>
-                                <div class="input-group input-group-merge">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            <i class="fas fa-sitemap"></i> 
-                                        </span>
+                    <form>
+                        <div class="row">
+                            <div class="col-md">
+                                <div class="form-group">
+                                    <label class="form-control-label">Nama Organisasi</label>
+                                    <div class="input-group input-group-merge">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="fas fa-sitemap"></i> 
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control" name="nama_organisasi" placeholder="Tuliskan nama organisasi lain ...">
                                     </div>
-                                    <input type="text" class="form-control" name="nama_organisasi" placeholder="Misalnya: PCNU, MWCNU, LPNU, PRNU ...">
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-group">
+                                    <label class="form-control-label">Jabatan</label>
+                                    <div class="input-group input-group-merge">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="fas fa-user-tie"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control" name="jabatan" placeholder="Tuliskan jabatan...">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md">
-                            <div class="form-group">
-                                <label class="form-control-label">Jabatan</label>
-                                <div class="input-group input-group-merge">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            <i class="fas fa-user-tie"></i>
-                                        </span>
+                        <div class="row">
+                            <div class="col-md">
+                                <div class="form-group">
+                                    <label class="form-control-label">Masa jabat awal</label>
+                                    <div class="input-group input-group-merge">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="fas fa-calendar"></i> 
+                                            </span>
+                                        </div>
+                                        <input type="date" class="form-control" name="masa_jabat_awal">
                                     </div>
-                                    <input type="text" class="form-control" name="jabatan" placeholder="Tuliskan jabatan...">
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-group">
+                                    <label class="form-control-label">Masa jabat akhir</label>
+                                    <div class="input-group input-group-merge">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="fas fa-user-tie"></i>
+                                            </span>
+                                        </div>
+                                        <input type="date" class="form-control" name="masa_jabat_akhir">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md">
-                            <div class="form-group">
-                                <label class="form-control-label">Masa jabat awal</label>
-                                <div class="input-group input-group-merge">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            <i class="fas fa-calendar"></i> 
-                                        </span>
-                                    </div>
-                                    <input type="date" class="form-control" name="masa_jabat_awal">
-                                </div>
+                        <div class="row mt-2">
+                            <div class="col">
+                                <button type="submit" class="btn btn-primary btn-block">
+                                    <i class="fas fa-paper-plane mr-2"></i>
+                                    Tambahkan
+                                </button>
                             </div>
                         </div>
-                        <div class="col-md">
-                            <div class="form-group">
-                                <label class="form-control-label">Masa jabat akhir</label>
-                                <div class="input-group input-group-merge">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            <i class="fas fa-user-tie"></i>
-                                        </span>
-                                    </div>
-                                    <input type="date" class="form-control" name="masa_jabat_akhir">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mt-2">
-                        <div class="col">
-                            <button type="submit" class="btn btn-primary btn-block">
-                                <i class="fas fa-paper-plane mr-2"></i>
-                                Tambahkan
-                            </button>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -732,73 +735,158 @@
 
     <script>
         $(document).ready(function () {
+
+            let dataOrganisasiNu = []
+            function refreshDataOrganisasiNu() {
+                html = ''
+                dataOrganisasiNu.forEach(function(organisasi, index) {
+                    html += `
+                        <tr>
+                            <td>${organisasi.struktur_organisasi}</td>
+                            <td>${organisasi.jabatan}</td>
+                            <td>${organisasi.masa_jabat_awal}</td>
+                            <td>${organisasi.masa_jabat_akhir}</td>
+                            <td>
+                                <button type='button' data-index='${index}' class='btn btn-danger btn-sm btn-hapus-organisasi_nu rounded-circle'>
+                                    <i class='fas fa-trash'></i>
+                                </button
+                            </td>
+                        </tr>
+                    `
+                })
+                $("#load-organisasi_nu").html(html)
+                $(".btn-hapus-organisasi_nu").one().click(function (e) {
+                    e.preventDefault()
+                    if (confirm('Anda yakin akan menghapus data organisasi nu ini?')) {
+                        index = $(this).data('index')
+                        delete dataOrganisasiNu[index]
+                        refreshDataOrganisasiNu()
+                    }
+                })
+            }
             $(".btn-tambah-organisasi_nu").click(function (e) {
                 e.preventDefault()
                 $("#modal-tambah-organisasi_nu").modal('show')
             })
+            $("#modal-tambah-organisasi_nu form").submit(function (e) {
+                e.preventDefault()
+                form = $(this);
+                dataOrganisasiNu.push({
+                    struktur_organisasi: form.find("input[name='struktur_organisasi']").val(),
+                    jabatan: form.find("input[name='jabatan']").val(),
+                    masa_jabat_awal: form.find("input[name='masa_jabat_awal']").val(),
+                    masa_jabat_akhir: form.find("input[name='masa_jabat_akhir']").val()
+                })
+                refreshDataOrganisasiNu()
+                $("#modal-tambah-organisasi_nu").modal('hide')
+                $(this)[0].reset()
+            })
+
+            let dataOrganisasiLain = []
+            function refreshDataOrganisasiLain() {
+                html = ''
+                dataOrganisasiLain.forEach(function(organisasi, index) {
+                    html += `
+                        <tr>
+                            <td>${organisasi.nama_organisasi}</td>
+                            <td>${organisasi.jabatan}</td>
+                            <td>${organisasi.masa_jabat_awal}</td>
+                            <td>${organisasi.masa_jabat_akhir}</td>
+                            <td>
+                                <button type='button' data-index='${index}' class='btn btn-danger btn-sm btn-hapus-organisasi_lain rounded-circle'>
+                                    <i class='fas fa-trash'></i>
+                                </button
+                            </td>
+                        </tr>
+                    `
+                })
+                $("#load-organisasi_lain").html(html)
+                $(".btn-hapus-organisasi_lain").one().click(function (e) {
+                    e.preventDefault()
+                    if (confirm('Anda yakin akan menghapus data organisasi ini?')) {
+                        index = $(this).data('index')
+                        delete dataOrganisasiLain[index]
+                        refreshDataOrganisasiLain()
+                    }
+                })
+            }
             $(".btn-tambah-organisasi_lain").click(function (e) {
                 e.preventDefault()
                 $("#modal-tambah-organisasi_lain").modal('show')
             })
-        });
+            $("#modal-tambah-organisasi_lain form").submit(function (e) {
+                e.preventDefault()
+                form = $(this);
+                dataOrganisasiLain.push({
+                    nama_organisasi: form.find("input[name='nama_organisasi']").val(),
+                    jabatan: form.find("input[name='jabatan']").val(),
+                    masa_jabat_awal: form.find("input[name='masa_jabat_awal']").val(),
+                    masa_jabat_akhir: form.find("input[name='masa_jabat_akhir']").val()
+                })
+                refreshDataOrganisasiLain()
+                $("#modal-tambah-organisasi_lain").modal('hide')
+                $(this)[0].reset()
+            })
 
-        $("input[name='foto_diri']").change(function (e) {
-            e.preventDefault()
-            if (this.files && this.files[0]) {
-                let reader = new FileReader()
-                reader.readAsDataURL(this.files[0])
-                reader.onload = function (e) {
-                    $(".preview-foto_diri").attr('src', e.target.result)
-                }
-            }
-        })
-        $("input[name='scan_ktp']").change(function (e) {
-            e.preventDefault()
-            if (this.files && this.files[0]) {
-                let reader = new FileReader()
-                reader.readAsDataURL(this.files[0])
-                reader.onload = function (e) {
-                    $(".preview-scan_ktp").attr('src', e.target.result)
-                }
-            }
-        })
-        $("input[name='scan_kartanu']").change(function (e) {
-            e.preventDefault()
-            if (this.files && this.files[0]) {
-                let reader = new FileReader()
-                reader.readAsDataURL(this.files[0])
-                reader.onload = function (e) {
-                    $(".preview-scan_kartanu").attr('src', e.target.result)
-                }
-            }
-        })
-        $("select[name='kecamatan']").change(function (e) {
-            value = $(this).val()
-            if (value != '') {
-                getKelurahan(value)
-            }
-        })
-        function getKelurahan(kecamatan) {
-            $.ajax({
-                type: "GET",
-                url: "{{ route('wilayah.index') }}",
-                data: {
-                    kecamatan: kecamatan,
-                    mode: 'kelurahan'
-                },
-                dataType: "json",
-            })
-            .done(function (data) {
-                if (data.status == 'success') {
-                    $("select[name='kelurahan']").html(`<option value=''>---</option>`)
-                    data.data.forEach(function (wilayah) {
-                        option = document.createElement('option')
-                        option.value = wilayah.kelurahan
-                        option.innerHTML = wilayah.kelurahan.toLowerCase().replace(/\b[a-z]/g, letter => letter.toUpperCase())
-                        $("select[name='kelurahan']").append(option)
-                    })
+            $("input[name='foto_diri']").change(function (e) {
+                e.preventDefault()
+                if (this.files && this.files[0]) {
+                    let reader = new FileReader()
+                    reader.readAsDataURL(this.files[0])
+                    reader.onload = function (e) {
+                        $(".preview-foto_diri").attr('src', e.target.result)
+                    }
                 }
             })
-        }
+            $("input[name='scan_ktp']").change(function (e) {
+                e.preventDefault()
+                if (this.files && this.files[0]) {
+                    let reader = new FileReader()
+                    reader.readAsDataURL(this.files[0])
+                    reader.onload = function (e) {
+                        $(".preview-scan_ktp").attr('src', e.target.result)
+                    }
+                }
+            })
+            $("input[name='scan_kartanu']").change(function (e) {
+                e.preventDefault()
+                if (this.files && this.files[0]) {
+                    let reader = new FileReader()
+                    reader.readAsDataURL(this.files[0])
+                    reader.onload = function (e) {
+                        $(".preview-scan_kartanu").attr('src', e.target.result)
+                    }
+                }
+            })
+            $("select[name='kecamatan']").change(function (e) {
+                value = $(this).val()
+                if (value != '') {
+                    getKelurahan(value)
+                }
+            })
+            function getKelurahan(kecamatan) {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ route('wilayah.index') }}",
+                    data: {
+                        kecamatan: kecamatan,
+                        mode: 'kelurahan'
+                    },
+                    dataType: "json",
+                })
+                .done(function (data) {
+                    if (data.status == 'success') {
+                        $("select[name='kelurahan']").html(`<option value=''>---</option>`)
+                        data.data.forEach(function (wilayah) {
+                            option = document.createElement('option')
+                            option.value = wilayah.kelurahan
+                            option.innerHTML = wilayah.kelurahan.toLowerCase().replace(/\b[a-z]/g, letter => letter.toUpperCase())
+                            $("select[name='kelurahan']").append(option)
+                        })
+                    }
+                })
+            }
+
+        });
     </script>
 @endsection
