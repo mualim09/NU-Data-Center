@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-
+        $this->call([WilayahSeeder::class]);
 
         $pondok = Pondok::factory()->count(5)->create();
         $pkp = PKP::factory()->count(5)->create();
