@@ -10,7 +10,7 @@ class PKP extends Model
     use HasFactory;
 
     protected $table = 'pkp';
-    protected $guard = ['id'];
+    protected $guarded = ['id'];
 
 
     public function anggota()

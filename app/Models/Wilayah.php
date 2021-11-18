@@ -10,5 +10,5 @@ class Wilayah extends Model
     use HasFactory;
 
     protected $table = 'wilayah';
-    protected $guard = ['id'];
+    protected $guarded = ['id'];
 }

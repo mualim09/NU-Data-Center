@@ -10,7 +10,7 @@ class AnggotaPendidikan extends Model
     use HasFactory;
 
     protected $table = 'anggota_pendidikan';
-    protected $guard = ['id'];
+    protected $guarded = ['id'];
     protected $with = ['pondok'];
 
 

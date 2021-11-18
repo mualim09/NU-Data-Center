@@ -10,7 +10,7 @@ class Pondok extends Model
     use HasFactory;
 
     protected $table = 'pondok';
-    protected $guard = ['id'];
+    protected $guarded = ['id'];
 
 
     public function anggotaPendidikan()
