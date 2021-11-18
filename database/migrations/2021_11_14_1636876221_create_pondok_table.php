@@ -13,7 +13,7 @@ class CreatePondokTable extends Migration
             $table->id()->autoIncrement();
             $table->string('nama');
             $table->text('alamat');
-            $table->text('alamat_maps');
+            $table->text('alamat_maps')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

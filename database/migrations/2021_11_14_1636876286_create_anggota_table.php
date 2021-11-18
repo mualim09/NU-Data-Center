@@ -26,7 +26,7 @@ class CreateAnggotaTable extends Migration
 			$table->string('kelurahan');
 			$table->string('kecamatan');
 			$table->string('kabupaten');
-			$table->string('alamat_maps');
+			$table->string('alamat_maps')->nullable();
 			$table->string('status_menikah');
 			$table->integer('jumlah_anggota_keluarga',);
 			$table->bigInteger('anggota_pendidikan_id')->unsigned()->nullable();
