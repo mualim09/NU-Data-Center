@@ -26,7 +26,7 @@
                 <a href="{{ route('admin.data_anggota.show', ['anggota' => $row->id]) }}" class="btn mr-1 mb-1 btn-secondary rounded rounded-circle btn-sm p-1" data-placement='left' title='Lihat detail'>
                     <i class="fas fa-eye" style="width: 18px"></i>
                 </a>
-                <a href="#" class="btn mr-1 mb-1 btn-secondary rounded rounded-circle btn-sm p-1" data-placement='left' title='Edit'>
+                <a href="{{ route('admin.data_anggota.edit', ['anggota' => $row->id]) }}" class="btn mr-1 mb-1 btn-secondary rounded rounded-circle btn-sm p-1" data-placement='left' title='Edit'>
                     <i class="fas fa-pencil-alt" style="width: 18px"></i>
                 </a>
                 <a href="#" class="btn mr-1 mb-1 btn-danger rounded rounded-circle btn-sm p-1" data-placement='left' title='Hapus'>
