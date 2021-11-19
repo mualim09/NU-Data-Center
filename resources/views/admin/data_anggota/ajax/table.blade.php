@@ -6,7 +6,7 @@
         <td style="vertical-align: middle">{{ $no++ }}</td>
         <td style="vertical-align: middle">
             <div class="d-flex align-items-center justify-content-start">
-                <img style="width: 40px; height: 40px; object-fit: cover" src="{{ asset($row->foto_diri) }}"/>
+                <img class="rounded rounded-circle" style="width: 40px; height: 40px; object-fit: cover" src="{{ asset($row->foto_diri) }}"/>
                 <h4 class="mb-0 ml-2 mr-2">{{ $row->nama }}</h4>
                 @if ($row->jenis_kelamin == 'L')
                     <i class="fas fa-mars text-primary"></i>

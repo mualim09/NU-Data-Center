@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreAnggotaRequest;
 use App\Models\Anggota;
 use App\Models\AnggotaOrganisasiLain;
 use App\Models\AnggotaOrganisasiNu;
@@ -81,9 +82,8 @@ class DataAnggotaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreAnggotaRequest $request)
     {
-
 
         $pondok = Pondok::create([
             'nama' => $request->pondok_nama,
@@ -113,7 +113,6 @@ class DataAnggotaController extends Controller
         $pathFotoDiri = 'storage/' . $request->file('foto_diri')->store('anggota/foto_diri');
         $pathScanKtp = 'storage/' . $request->file('scan_ktp')->store('anggota/scan_ktp');
         $pathScanKartanu = 'storage/' . $request->file('scan_kartanu')->store('anggota/scan_kartanu');
-
 
         $anggota = Anggota::create([
             'no_kartanu' => $request->no_kartanu,
@@ -163,6 +162,11 @@ class DataAnggotaController extends Controller
                 'anggota_id' => $anggota->id,
             ]);
         });
+
+        return redirect()->route('admin.data_anggota.index')
+            ->with('success', 'Data anggota berhasil dientry!')
+            ->with('icon', 'fas fa-thumbs-up')
+            ->with('color', 'success');
     }
 
     /**

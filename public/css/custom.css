@@ -427,7 +427,6 @@ table.table-border-0 tr > * {
 	cursor: pointer;
 }
 .card img {
-	border-radius: 0 !important;
 	max-width: initial;
 	max-height: initial
 }

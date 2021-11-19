@@ -14,7 +14,9 @@
 @endsection
 
 
+
 @section('content')
+
     <header class="bg-gradient-success pt-5 pb-6">
         <div class="container-fluid">
             <div class="row">
@@ -53,9 +55,15 @@
                                                 <i class="fa fa-signature"></i>
                                             </span>
                                         </div>
-                                        <input type="text" name="nama" class="form-control" placeholder="Tuliskan nama...">
+                                        <input type="text" name="nama" value="{{ old('nama') }}" class="form-control @error('nama') is-invalid @enderror" placeholder="Tuliskan nama...">
                                     </div>
+                                    @error('nama')
+                                        <div class="text-uppercase font-weight-bolder text-red pt-1" style="font-size: 8px">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
+                                
                                 <div class="col-md-4">
                                     <label class="text-xs mb-1 d-flex align-items-center" style="color: #a595c5">
                                         Jenis Kelamin
@@ -66,13 +74,19 @@
                                                 <i class="fa fa-venus-mars"></i>
                                             </span>
                                         </div>
-                                        <select name="jenis_kelamin" class="form-control">
-                                            <option value="L">Laki-laki</option>
-                                            <option value="P">Perempuan</option>
+                                        <select name="jenis_kelamin" class="form-control @error('jenis_kelamin') is-invalid @enderror">
+                                            <option value="L" @if(old('jenis_kelamin') == 'L') selected @endif>Laki-laki</option>
+                                            <option value="P" @if(old('jenis_kelamin') == 'P') selected @endif>Perempuan</option>
                                         </select>
                                     </div>
+                                    @error('jenis_kelamin')
+                                        <div class="text-uppercase font-weight-bolder text-red pt-1" style="font-size: 8px">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
+                            
                             <div class="row ml-2 mb-4 pb-1">
                                 <div class="col-md">
                                     <label class="text-xs mb-1 d-flex align-items-center" style="color: #a595c5">
@@ -84,9 +98,19 @@
                                                 <i class="fa fa-birthday-cake"></i>
                                             </span>
                                         </div>
-                                        <input type="text" name="tempat_lahir" class="form-control" placeholder="Tempat lahir...">
-                                        <input type="date" name="tanggal_lahir" class="form-control">
+                                        <input type="text" name="tempat_lahir" value="{{ old('tempat_lahir') }}" class="form-control @error('tempat_lahir') is-invalid @enderror" placeholder="Tempat lahir...">
+                                        <input type="date" name="tanggal_lahir" value="{{ old('tanggal_lahir') }}" class="form-control @error('tanggal_lahir') is-invalid @enderror">
                                     </div>
+                                    @error('tempat_lahir')
+                                        <div class="text-uppercase font-weight-bolder text-red pt-1" style="font-size: 8px">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                    @error('tanggal_lahir')
+                                        <div class="text-uppercase font-weight-bolder text-red pt-1" style="font-size: 8px">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                                 <div class="col-md">
                                     <label class="text-xs mb-1 d-flex align-items-center" style="color: #a595c5">
@@ -98,8 +122,13 @@
                                                 <i class="fa fa-id-card"></i>
                                             </span>
                                         </div>
-                                        <input type="text" class="form-control" name="no_ktp" placeholder="Tuliskan nomor ktp...">
+                                        <input type="text" value="{{ old('no_ktp') }}" class="form-control @error('no_ktp') is-invalid @enderror" name="no_ktp" placeholder="Tuliskan nomor ktp...">
                                     </div>
+                                    @error('no_ktp')
+                                        <div class="text-uppercase font-weight-bolder text-red pt-1" style="font-size: 8px">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                                 <div class="col-md">
                                     <label class="text-xs mb-1 d-flex align-items-center" style="color: #a595c5">
@@ -111,8 +140,13 @@
                                                 <i class="fa fa-id-card"></i>
                                             </span>
                                         </div>
-                                        <input type="text" class="form-control" name="no_kartanu" placeholder="Tuliskan nomor kartanu...">
+                                        <input type="text" value="{{ old('no_kartanu') }}" class="form-control @error('no_kartanu') is-invalid @enderror" name="no_kartanu" placeholder="Tuliskan nomor kartanu...">
                                     </div>
+                                    @error('no_kartanu')
+                                        <div class="text-uppercase font-weight-bolder text-red pt-1" style="font-size: 8px">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="row ml-2 mb-4 pb-1">
@@ -127,8 +161,13 @@
                                                 <i class="fa fa-id-card"></i>
                                             </span>
                                         </div>
-                                        <input type="text" class="form-control" name="no_telepon" placeholder="Tuliskan nomor telepon...">
+                                        <input type="text" value="{{ old('no_telepon') }}" class="form-control @error('no_telepon') is-invalid @enderror" name="no_telepon" placeholder="Tuliskan nomor telepon...">
                                     </div>
+                                    @error('no_telepon')
+                                        <div class="text-uppercase font-weight-bolder text-red pt-1" style="font-size: 8px">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                                 <div class="col-md">
                                     <label class="text-xs mb-1 d-flex align-items-center" style="color: #a595c5">
@@ -141,7 +180,7 @@
                                                 <i class="fas fa-envelope"></i>
                                             </span>
                                         </div>
-                                        <input type="text" class="form-control" name="email" placeholder="Tuliskan email...">
+                                        <input type="text" value="{{ old('email') }}" class="form-control" name="email" placeholder="Tuliskan email...">
                                     </div>
                                 </div>
                             </div>
@@ -152,19 +191,34 @@
                                         Kabupaten // Kecamatan // Kelurahan
                                     </label>
                                     <div class="input-group input-group-merge">
-                                        <select name="kabupaten" class="form-control">
+                                        <select name="kabupaten" class="form-control @error('kabupaten') is-invalid @enderror">
                                             <option value="Malang">Malang</option>
                                         </select>
-                                        <select name="kecamatan" class="form-control">
-                                            <option value="---">---</option>
+                                        <select name="kecamatan" class="form-control @error('kecamatan') is-invalid @enderror">
+                                            <option value="">---</option>
                                             @foreach ($dataKecamatan as $kecamatan)
-                                                <option value="{{ $kecamatan }}">{{ ucwords(strtolower($kecamatan)) }}</option>
+                                                <option @if(old('kecamatan') == $kecamatan) selected @endif value="{{ $kecamatan }}">{{ ucwords(strtolower($kecamatan)) }}</option>
                                             @endforeach
                                         </select>
-                                        <select name="kelurahan" class="form-control">
-                                            <option value="---">---</option>
+                                        <select name="kelurahan" class="form-control @error('kelurahan') is-invalid @enderror">
+                                            <option value="">---</option>
                                         </select>
                                     </div>
+                                    @error('kabupaten')
+                                        <div class="text-uppercase font-weight-bolder text-red pt-1" style="font-size: 8px">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                    @error('kecamatan')
+                                        <div class="text-uppercase font-weight-bolder text-red pt-1" style="font-size: 8px">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                    @error('kelurahan')
+                                        <div class="text-uppercase font-weight-bolder text-red pt-1" style="font-size: 8px">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="row ml-2 mb-4 pb-1">
@@ -172,17 +226,21 @@
                                     <label class="text-xs mb-1 d-flex align-items-center" style="color: #a595c5">
                                         Alamat
                                     </label>
-                                    <div class="font-weight-bold">
-                                        <div class="input-group input-group-merge">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">
-                                                    <i class="fas fa-map-signs"></i>
-                                                </span>
-                                            </div>
-                                            <textarea name="alamat" class="form-control" rows="3"></textarea>
+                                    <div class="input-group input-group-merge">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="fas fa-map-signs"></i>
+                                            </span>
                                         </div>
+                                        <textarea name="alamat" class="form-control @error('alamat') is-invalid @enderror" rows="3">{{ old('alamat') }}</textarea>
                                     </div>
+                                    @error('alamat')
+                                        <div class="text-uppercase font-weight-bolder text-red pt-1" style="font-size: 8px">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
+                                
                             </div>
                             <div class="row ml-2 mb-4 pb-1">
                                 <div class="col-md">
@@ -195,8 +253,13 @@
                                                 <i class="fas fa-user-circle"></i>
                                             </span>
                                         </div>
-                                        <input type="file" class="form-control" name="foto_diri">
+                                        <input type="file" class="form-control @error('foto_diri') is-invalid @enderror" name="foto_diri">
                                     </div>
+                                    @error('foto_diri')
+                                        <div class="text-uppercase font-weight-bolder text-red pt-1" style="font-size: 8px">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                     <img class="img-thumbnail preview-foto_diri" src="{{ asset('images/img-unavailable.png') }}" alt="Gambar tidak tersedia">
                                 </div>
                                 <div class="col-md">
@@ -209,8 +272,13 @@
                                                 <i class="fas fa-id-card"></i>
                                             </span>
                                         </div>
-                                        <input type="file" class="form-control" name="scan_ktp">
+                                        <input type="file" class="form-control @error('scan_ktp') is-invalid @enderror" name="scan_ktp">
                                     </div>
+                                    @error('scan_ktp')
+                                        <div class="text-uppercase font-weight-bolder text-red pt-1" style="font-size: 8px">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                     <img class="img-thumbnail preview-scan_ktp" src="{{ asset('images/img-unavailable.png') }}" alt="Gambar tidak tersedia">
                                 </div>
                                 <div class="col-md">
@@ -225,6 +293,11 @@
                                         </div>
                                         <input type="file" class="form-control" name="scan_kartanu">
                                     </div>
+                                    @error('scan_kartanu')
+                                        <div class="text-uppercase font-weight-bolder text-red pt-1" style="font-size: 8px">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                     <img class="img-thumbnail preview-scan_kartanu" src="{{ asset('images/img-unavailable.png') }}" alt="Gambar tidak tersedia">
                                 </div>
                             </div>
@@ -240,8 +313,8 @@
                                             </span>
                                         </div>
                                         <select name="status_menikah" class="form-control">
-                                            <option value="Belum menikah">Belum menikah</option>
-                                            <option value="Sudah menikah">Sudah menikah</option>
+                                            <option @if(old('status_menikah') == 'Belum menikah') selected @endif value="Belum menikah">Belum menikah</option>
+                                            <option @if(old('status_menikah') == 'Sudah menikah') selected @endif value="Sudah menikah">Sudah menikah</option>
                                         </select>
                                     </div>
                                 </div>
@@ -255,7 +328,7 @@
                                                 <i class="fas fa-users"></i>
                                             </span>
                                         </div>
-                                        <input type="number" class="form-control" min="0" placeholder="Tuliskan jumlah..." name="jumlah_anggota_keluarga">
+                                        <input type="number" value="{{ old('jumlah_anggota_keluarga') }}" class="form-control" min="0" placeholder="Tuliskan jumlah..." name="jumlah_anggota_keluarga">
                                         <div class="input-group-append">
                                             <span class="input-group-text">Orang</span>
                                         </div>
@@ -281,15 +354,15 @@
                                             </span>
                                         </div>
                                         <select name="pendidikan_pendidikan_terakhir" class="form-control">
-                                            <option value="Tidak ada">Tidak ada</option>
-                                            <option value="SD/MI">SD/MI</option>
-                                            <option value="SMP/MTs">SMP/MTs</option>
-                                            <option value="SMA/MA">SMA/MA</option>
-                                            <option value="SMK/MK">SMK/MK</option>
-                                            <option value="D3">D3</option>
-                                            <option value="S1">S1</option>
-                                            <option value="S2">S2</option>
-                                            <option value="S3">S3</option>
+                                            <option @if(old('pendidikan_pendidikan_terakhir') == 'Tidak ada') selected @endif value="Tidak ada">Tidak ada</option>
+                                            <option @if(old('pendidikan_pendidikan_terakhir') == 'SD/MI') selected @endif value="SD/MI">SD/MI</option>
+                                            <option @if(old('pendidikan_pendidikan_terakhir') == 'SMP/MTs') selected @endif value="SMP/MTs">SMP/MTs</option>
+                                            <option @if(old('pendidikan_pendidikan_terakhir') == 'SMA/MA') selected @endif value="SMA/MA">SMA/MA</option>
+                                            <option @if(old('pendidikan_pendidikan_terakhir') == 'SMK/MK') selected @endif value="SMK/MK">SMK/MK</option>
+                                            <option @if(old('pendidikan_pendidikan_terakhir') == 'D3') selected @endif value="D3">D3</option>
+                                            <option @if(old('pendidikan_pendidikan_terakhir') == 'S1') selected @endif value="S1">S1</option>
+                                            <option @if(old('pendidikan_pendidikan_terakhir') == 'S2') selected @endif value="S2">S2</option>
+                                            <option @if(old('pendidikan_pendidikan_terakhir') == 'S3') selected @endif value="S3">S3</option>
                                         </select>
                                     </div>
                                 </div>
@@ -303,7 +376,7 @@
                                                 <i class="fas fa-book-reader"></i>
                                             </span>
                                         </div>
-                                        <input type="text" class="form-control" placeholder="Tuliskan jurusan..." name="pendidikan_jurusan">
+                                        <input value="{{ old('pendidikan_jurusan') }}" type="text" class="form-control" placeholder="Tuliskan jurusan..." name="pendidikan_jurusan">
                                     </div>
                                 </div>
                             </div>
@@ -318,7 +391,7 @@
                                                 <i class="fas fa-school"></i>
                                             </span>
                                         </div>
-                                        <input type="text" class="form-control" placeholder="Tuliskan nama pondok pesantren..." name="pondok_nama">
+                                        <input type="text" class="form-control" placeholder="Tuliskan nama pondok pesantren..." value="{{ old('pondok_nama') }}" name="pondok_nama">
                                     </div>
                                 </div>
                                 <div class="col-md">
@@ -331,7 +404,7 @@
                                                 <i class="fas fa-quran"></i>
                                             </span>
                                         </div>
-                                        <input type="text" class="form-control" placeholder="Tuliskan berapa lama pendidikan PP..." name="pendidikan_pendidikan_pesantren">
+                                        <input type="text" class="form-control" placeholder="Tuliskan berapa lama pendidikan PP..." value="{{ old('pendidikan_pendidikan_pesantren') }}" name="pendidikan_pendidikan_pesantren">
                                         <div class="input-group-append">
                                             <span class="input-group-text">Tahun</span>
                                         </div>
@@ -349,7 +422,7 @@
                                                 <i class="fas fa-map-signs"></i>
                                             </span>
                                         </div>
-                                        <textarea name="pondok_alamat" class="form-control" rows="3"></textarea>
+                                        <textarea name="pondok_alamat" class="form-control" rows="3">{{ old('pondok_alamat') }}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -371,7 +444,7 @@
                                                 <i class="fas fa-briefcase"></i>
                                             </span>
                                         </div>
-                                        <input name="pekerjaan_jenis_profesi" class="form-control" type="text" placeholder="Tuliskan Pekerjaan..."/>
+                                        <input value="{{ old('pekerjaan_jenis_profesi') }}" name="pekerjaan_jenis_profesi" class="form-control" type="text" placeholder="Tuliskan Pekerjaan..."/>
                                     </div>
                                 </div>
                                 
@@ -387,10 +460,10 @@
                                             </span>
                                         </div>
                                         <select name="pekerjaan_penghasilan_perbulan" class="form-control">
-                                            <option value="< Rp. 1.000.000">< Rp. 1.000.000</option>
-                                            <option value="> Rp. 1.000.000 dan < Rp. 5.000.000">> Rp. 1.000.000 dan < Rp. 5.000.000</option>
-                                            <option value="> Rp. 5.000.000 dan < Rp. 15.000.000">> Rp. 5.000.000 dan < Rp. 15.000.000</option>
-                                            <option value="> Rp. 15.000.000">> Rp. 15.000.000</option>
+                                            <option @if(old('pekerjaan_penghasilan_perbulan') == '< Rp. 1.000.000') selected @endif value="< Rp. 1.000.000">< Rp. 1.000.000</option>
+                                            <option @if(old('pekerjaan_penghasilan_perbulan') == '> Rp. 1.000.000 dan < Rp. 5.000.000') selected @endif value="> Rp. 1.000.000 dan < Rp. 5.000.000">> Rp. 1.000.000 dan < Rp. 5.000.000</option>
+                                            <option @if(old('pekerjaan_penghasilan_perbulan') == '> Rp. 5.000.000 dan < Rp. 15.000.000') selected @endif value="> Rp. 5.000.000 dan < Rp. 15.000.000">> Rp. 5.000.000 dan < Rp. 15.000.000</option>
+                                            <option @if(old('pekerjaan_penghasilan_perbulan') == '> Rp. 15.000.000') selected @endif value="> Rp. 15.000.000">> Rp. 15.000.000</option>
                                         </select>
                                     </div>
                                 </div>
@@ -406,7 +479,7 @@
                                                 <i class="fas fa-map-signs"></i>
                                             </span>
                                         </div>
-                                        <textarea name="pekerjaan_alamat_kantor" class="form-control" cols="3"></textarea>
+                                        <textarea name="pekerjaan_alamat_kantor" class="form-control" cols="3">{{ old('pekerjaan_alamat_kantor') }}</textarea>
                                     </div>
                                 </div>
                                 <div class="col-md">
@@ -419,7 +492,7 @@
                                                 <i class="fas fa-file-medical"></i>
                                             </span>
                                         </div>
-                                        <input type="text" class="form-control" name="asuransi_kesehatan" placeholder="Abaikan jika tidak ada...">
+                                        <input type="text" class="form-control" value="{{ old('asuransi_kesehatan') }}" name="asuransi_kesehatan" placeholder="Abaikan jika tidak ada...">
                                     </div>
                                 </div>
                             </div>
@@ -441,8 +514,13 @@
                                                 <i class="fas fa-sitemap"></i>
                                             </span>
                                         </div>
-                                        <input type="text" class="form-control" name="aktifitas_nu" placeholder="Misalnya: PCNU, MWCNU, LPNU, PCINU, PRNU ...">
+                                        <input type="text" class="form-control @error('aktifitas_nu') is-invalid @enderror" value="{{ old('aktifitas_nu') }}" name="aktifitas_nu" placeholder="Misalnya: PCNU, MWCNU, LPNU, PCINU, PRNU ...">
                                     </div>
+                                    @error('aktifitas_nu')
+                                        <div class="text-uppercase font-weight-bolder text-red pt-1" style="font-size: 8px">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                                 <div class="col-md">
                                     <label class="text-xs mb-1 d-flex align-items-center" style="color: #a595c5">
@@ -454,8 +532,13 @@
                                                 <i class="fas fa-user-tie"></i>
                                             </span>
                                         </div>
-                                        <input type="text" name="jabatan_nu" class="form-control" placeholder="Tuliskan jabatan pada struktur organisasi">
+                                        <input type="text" value="{{ old('jabatan_nu') }}" name="jabatan_nu" class="form-control @error('jabatan_nu') is-invalid @enderror" placeholder="Tuliskan jabatan pada struktur organisasi">
                                     </div>
+                                    @error('jabatan_nu')
+                                        <div class="text-uppercase font-weight-bolder text-red pt-1" style="font-size: 8px">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="row ml-2 mb-4 pb-1">
@@ -470,7 +553,7 @@
                                                 <i class="fas fa-user-tie"></i>
                                             </span>
                                         </div>
-                                        <input type="text" name="pkp_angkatan_pkp" class="form-control" placeholder="Tuliskan angkatan PKP ke ...">
+                                        <input type="text" value="{{ old('pkp_angkatan_pkp') }}" name="pkp_angkatan_pkp" class="form-control" placeholder="Tuliskan angkatan PKP ke ...">
                                     </div>
                                 </div>
                                 <div class="col-md">
@@ -484,7 +567,7 @@
                                                 <i class="fas fa-user-tie"></i>
                                             </span>
                                         </div>
-                                        <input type="text" name="pkp_lokasi_kegiatan" class="form-control" placeholder="Tuliskan lokasi kegiatan PKP...">
+                                        <input type="text" value="{{ old('pkp_lokasi_kegiatan') }}" name="pkp_lokasi_kegiatan" class="form-control" placeholder="Tuliskan lokasi kegiatan PKP...">
                                     </div>
                                 </div>
                                 <div class="col-md">
@@ -498,7 +581,7 @@
                                                 <i class="fas fa-user-tie"></i>
                                             </span>
                                         </div>
-                                        <input type="date" class="form-control" name="pkp_waktu_kegiatan">
+                                        <input type="date" class="form-control" value="{{ old('pkp_waktu_kegiatan') }}" name="pkp_waktu_kegiatan">
                                     </div>
                                 </div>
                             </div>
@@ -508,7 +591,7 @@
                                         <i class="fas fa-user-friends mr-2" style="font-size: 12px"></i>
                                         Aktifitas NU lainnya
                                     </label>
-                                    <input type="hidden" name="organisasi_nu">
+                                    <input type="hidden" value="{{ old('organisasi_nu') }}" name="organisasi_nu">
                                     <button class="btn btn-primary btn-sm mb-2 btn-tambah-organisasi_nu">
                                         <i class="fas fa-plus"></i>
                                         Tambah data
@@ -537,7 +620,7 @@
                                         <i class="fas fa-user-friends mr-2" style="font-size: 12px"></i>
                                         Aktifitas Organisasi lainnya
                                     </label>
-                                    <input type="hidden" name="organisasi_lain">
+                                    <input type="hidden" value="{{ old('organisasi_lain') }}" name="organisasi_lain">
                                     <button class="btn btn-primary btn-sm mb-2 btn-tambah-organisasi_lain">
                                         <i class="fas fa-plus"></i>
                                         Tambah data
@@ -745,7 +828,12 @@
     <script>
         $(document).ready(function () {
 
-            let dataOrganisasiNu = []
+            @if (old('organisasi_nu') != '')
+                let dataOrganisasiNu = JSON.parse(`{!! old('organisasi_nu') !!}`)
+                refreshDataOrganisasiNu()
+            @else
+                let dataOrganisasiNu = []
+            @endif
             function refreshDataOrganisasiNu() {
                 html = ''
                 dataOrganisasiNu.forEach(function(organisasi, index) {
@@ -792,7 +880,12 @@
                 $(this)[0].reset()
             })
 
-            let dataOrganisasiLain = []
+            @if (old('organisasi_lain') != '')
+                let dataOrganisasiLain = JSON.parse(`{!! old('organisasi_lain') !!}`)
+                refreshDataOrganisasiLain();
+            @else
+                let dataOrganisasiLain = []
+            @endif
             function refreshDataOrganisasiLain() {
                 html = ''
                 dataOrganisasiLain.forEach(function(organisasi, index) {
@@ -875,7 +968,7 @@
                     getKelurahan(value)
                 }
             })
-            function getKelurahan(kecamatan) {
+            function getKelurahan(kecamatan, callback) {
                 $.ajax({
                     type: "GET",
                     url: "{{ route('wilayah.index') }}",
@@ -887,16 +980,24 @@
                 })
                 .done(function (data) {
                     if (data.status == 'success') {
-                        $("select[name='kelurahan']").html(`<option value=''>---</option>`)
+                        $("select[name='kelurahan']").html(`<option value=''></option>`)
                         data.data.forEach(function (wilayah) {
                             option = document.createElement('option')
                             option.value = wilayah.kelurahan
                             option.innerHTML = wilayah.kelurahan.toLowerCase().replace(/\b[a-z]/g, letter => letter.toUpperCase())
                             $("select[name='kelurahan']").append(option)
                         })
+                        callback = callback || 0;
+                        if (callback) callback()
                     }
                 })
             }
+
+            @if (old('kelurahan') != '' && old('kecamatan') != '')
+                getKelurahan(`{{ old('kecamatan') }}`, function() {
+                    $("option[value='{{ old('kelurahan') }}']").attr('selected', 'selected')
+                })
+            @endif
 
         });
     </script>

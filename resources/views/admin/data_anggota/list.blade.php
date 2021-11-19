@@ -12,6 +12,18 @@
 
 @section('content')
 
+
+<div class="alert alert-default alert-dismissible justify-content-between col-md-3 col-11 py-3 pl-3 pr-0 align-items-center" role="alert" style="position: fixed;right: 16px;top: 16px;z-index: 1050;display: none;">
+	<div class="text-left d-flex align-items-center">
+	    <div class="alert-icon"><i class="fas fa-thumbs-up"></i></div>
+	    <div class="alert-text mr-3"></div>
+	</div>
+    <a href="javascript:void(0)" data-dismiss="alert" class="btn btn-link text-white">
+    	<i class="fas fa-times"></i> 
+    </a>
+</div>
+
+
 <header class="bg-blue py-6"></header>
 <div class="container-fluid mt--6">
     <div class="row">
@@ -147,6 +159,33 @@
 @section('js_scripts')
 <script>
     $(document).ready(function () {
+
+        function showAlert(text, icon, color) {
+			$(".alert").addClass('d-flex')
+			$(".alert-icon i").attr('class', '')
+			$(".alert-icon i").addClass(icon)
+			$(".alert-text").html(text)
+
+			classArray = ['alert-danger', 'alert-success', 'alert-info', 'alert-dark', 'alert-light', 'alert-warning', 'alert-primary', 'alert-secondary', 'alert-default']
+			$.each(classArray, function(index, value) {
+				$(".alert").removeClass(value)
+			})
+			$(".alert").addClass('alert-' + color)
+
+
+			$(".alert").css({opacity: '0.0'}).animate({opacity: '1.0'}, 500)
+			setTimeout(function() {
+				$(".alert").animate({opacity: '0.0'}, 500, 'linear', function() {
+					$(this).removeClass('d-flex')
+					$(this).css('display', 'none')
+				})
+			}, 5000)
+		}
+        @if (session()->has('success'))
+            showAlert(`{{ session('success') }}`, `{{ session('icon') }}`, `{{ session('color') }}`)
+        @endif
+
+
         let dataParams = {
             limit: 50
         }
