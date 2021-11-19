@@ -17,13 +17,13 @@
 
 @section('content')
 
-    <header class="bg-gradient-success pt-5 pb-6">
+    <header class="bg-gradient-warning pt-5 pb-6">
         <div class="container-fluid">
             <div class="row">
                 <div class="col d-flex align-items-center" style="line-height: 12px">
                     <i class="fas fa-plus-circle mr-3 text-white" style="font-size: 40px"></i>
                     <div class="pb-2">
-                        <h2 class="mb-0 text-uppercase text-white font-weight-bolder">Entry data anggota</h2>
+                        <h2 class="mb-0 text-uppercase text-white font-weight-bolder">Edit data anggota</h2>
                         <span class="font-weight-bolder text-xs text-uppercase" style="color: #cbffeb;">{{ \Carbon\Carbon::now()->format('d F Y, H:i:s') }}</span>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
                                                 <i class="fa fa-signature"></i>
                                             </span>
                                         </div>
-                                        <input type="text" name="nama" value="{{ old('nama', $anggota->nama) }}" class="form-control @error('nama') is-invalid @enderror" placeholder="Tuliskan nama...">
+                                        <input type="text" name="nama" value="{{ old('nama', $anggota->nama) }}" class="form-control @error('nama') is-invalid @enderror" required placeholder="Tuliskan nama...">
                                     </div>
                                     @error('nama')
                                         <div class="text-uppercase font-weight-bolder text-red pt-1" style="font-size: 8px">
@@ -75,7 +75,7 @@
                                                 <i class="fa fa-venus-mars"></i>
                                             </span>
                                         </div>
-                                        <select name="jenis_kelamin" class="form-control @error('jenis_kelamin') is-invalid @enderror">
+                                        <select name="jenis_kelamin" class="form-control @error('jenis_kelamin') is-invalid @enderror" required>
                                             <option value="L" @if(old('jenis_kelamin', $anggota->jenis_kelamin) == 'L') selected @endif>Laki-laki</option>
                                             <option value="P" @if(old('jenis_kelamin', $anggota->jenis_kelamin) == 'P') selected @endif>Perempuan</option>
                                         </select>
@@ -99,8 +99,8 @@
                                                 <i class="fa fa-birthday-cake"></i>
                                             </span>
                                         </div>
-                                        <input type="text" name="tempat_lahir" value="{{ old('tempat_lahir', $anggota->tempat_lahir) }}" class="form-control @error('tempat_lahir') is-invalid @enderror" placeholder="Tempat lahir...">
-                                        <input type="date" name="tanggal_lahir" value="{{ old('tanggal_lahir', $anggota->tanggal_lahir) }}" class="form-control @error('tanggal_lahir') is-invalid @enderror">
+                                        <input type="text" name="tempat_lahir" value="{{ old('tempat_lahir', $anggota->tempat_lahir) }}" class="form-control @error('tempat_lahir') is-invalid @enderror" required placeholder="Tempat lahir...">
+                                        <input type="date" name="tanggal_lahir" value="{{ old('tanggal_lahir', $anggota->tanggal_lahir) }}" class="form-control @error('tanggal_lahir') is-invalid @enderror" required>
                                     </div>
                                     @error('tempat_lahir')
                                         <div class="text-uppercase font-weight-bolder text-red pt-1" style="font-size: 8px">
@@ -123,7 +123,7 @@
                                                 <i class="fa fa-id-card"></i>
                                             </span>
                                         </div>
-                                        <input type="text" value="{{ old('no_ktp', $anggota->no_ktp) }}" class="form-control @error('no_ktp') is-invalid @enderror" name="no_ktp" placeholder="Tuliskan nomor ktp...">
+                                        <input type="text" value="{{ old('no_ktp', $anggota->no_ktp) }}" class="form-control @error('no_ktp') is-invalid @enderror" required name="no_ktp" placeholder="Tuliskan nomor ktp...">
                                     </div>
                                     @error('no_ktp')
                                         <div class="text-uppercase font-weight-bolder text-red pt-1" style="font-size: 8px">
@@ -141,7 +141,7 @@
                                                 <i class="fa fa-id-card"></i>
                                             </span>
                                         </div>
-                                        <input type="text" value="{{ old('no_kartanu', $anggota->no_kartanu) }}" class="form-control @error('no_kartanu') is-invalid @enderror" name="no_kartanu" placeholder="Tuliskan nomor kartanu...">
+                                        <input type="text" value="{{ old('no_kartanu', $anggota->no_kartanu) }}" class="form-control @error('no_kartanu') is-invalid @enderror" required name="no_kartanu" placeholder="Tuliskan nomor kartanu...">
                                     </div>
                                     @error('no_kartanu')
                                         <div class="text-uppercase font-weight-bolder text-red pt-1" style="font-size: 8px">
@@ -162,7 +162,7 @@
                                                 <i class="fa fa-id-card"></i>
                                             </span>
                                         </div>
-                                        <input type="text" value="{{ old('no_telepon', $anggota->no_telepon) }}" class="form-control @error('no_telepon') is-invalid @enderror" name="no_telepon" placeholder="Tuliskan nomor telepon...">
+                                        <input type="text" value="{{ old('no_telepon', $anggota->no_telepon) }}" class="form-control @error('no_telepon') is-invalid @enderror" required name="no_telepon" placeholder="Tuliskan nomor telepon...">
                                     </div>
                                     @error('no_telepon')
                                         <div class="text-uppercase font-weight-bolder text-red pt-1" style="font-size: 8px">
@@ -192,16 +192,16 @@
                                         Kabupaten // Kecamatan // Kelurahan
                                     </label>
                                     <div class="input-group input-group-merge">
-                                        <select name="kabupaten" class="form-control @error('kabupaten') is-invalid @enderror">
+                                        <select name="kabupaten" class="form-control @error('kabupaten') is-invalid @enderror" required>
                                             <option value="Malang">Malang</option>
                                         </select>
-                                        <select name="kecamatan" class="form-control @error('kecamatan') is-invalid @enderror">
+                                        <select name="kecamatan" class="form-control @error('kecamatan') is-invalid @enderror" required>
                                             <option value="">---</option>
                                             @foreach ($dataKecamatan as $kecamatan)
                                                 <option @if(old('kecamatan', $anggota->kecamatan) == $kecamatan) selected @endif value="{{ $kecamatan }}">{{ ucwords(strtolower($kecamatan)) }}</option>
                                             @endforeach
                                         </select>
-                                        <select name="kelurahan" class="form-control @error('kelurahan') is-invalid @enderror">
+                                        <select name="kelurahan" class="form-control @error('kelurahan') is-invalid @enderror" required>
                                             <option value="">---</option>
                                         </select>
                                     </div>
@@ -233,7 +233,7 @@
                                                 <i class="fas fa-map-signs"></i>
                                             </span>
                                         </div>
-                                        <textarea name="alamat" class="form-control @error('alamat') is-invalid @enderror" rows="3">{{ old('alamat', $anggota->alamat) }}</textarea>
+                                        <textarea name="alamat" class="form-control @error('alamat') is-invalid @enderror" required rows="3">{{ old('alamat', $anggota->alamat) }}</textarea>
                                     </div>
                                     @error('alamat')
                                         <div class="text-uppercase font-weight-bolder text-red pt-1" style="font-size: 8px">
@@ -524,7 +524,7 @@
                                                 <i class="fas fa-sitemap"></i>
                                             </span>
                                         </div>
-                                        <input type="text" class="form-control @error('aktifitas_nu') is-invalid @enderror" value="{{ old('aktifitas_nu', $anggota->aktifitas_nu) }}" name="aktifitas_nu" placeholder="Misalnya: PCNU, MWCNU, LPNU, PCINU, PRNU ...">
+                                        <input type="text" class="form-control @error('aktifitas_nu') is-invalid @enderror" required value="{{ old('aktifitas_nu', $anggota->aktifitas_nu) }}" name="aktifitas_nu" placeholder="Misalnya: PCNU, MWCNU, LPNU, PCINU, PRNU ...">
                                     </div>
                                     @error('aktifitas_nu')
                                         <div class="text-uppercase font-weight-bolder text-red pt-1" style="font-size: 8px">
@@ -542,7 +542,7 @@
                                                 <i class="fas fa-user-tie"></i>
                                             </span>
                                         </div>
-                                        <input type="text" value="{{ old('jabatan_nu', $anggota->jabatan_nu) }}" name="jabatan_nu" class="form-control @error('jabatan_nu') is-invalid @enderror" placeholder="Tuliskan jabatan pada struktur organisasi">
+                                        <input type="text" value="{{ old('jabatan_nu', $anggota->jabatan_nu) }}" name="jabatan_nu" class="form-control @error('jabatan_nu') is-invalid @enderror" required placeholder="Tuliskan jabatan pada struktur organisasi">
                                     </div>
                                     @error('jabatan_nu')
                                         <div class="text-uppercase font-weight-bolder text-red pt-1" style="font-size: 8px">
@@ -602,7 +602,7 @@
                                         Aktifitas NU lainnya
                                     </label>
                                     <input type="hidden" value="{{ old('organisasi_nu', json_encode($anggota->organisasiNu)) }}" name="organisasi_nu">
-                                    <button class="btn btn-primary btn-sm mb-2 btn-tambah-organisasi_nu">
+                                    <button tabindex="-1" class="btn btn-primary btn-sm mb-2 btn-tambah-organisasi_nu">
                                         <i class="fas fa-plus"></i>
                                         Tambah data
                                     </button>
@@ -631,7 +631,7 @@
                                         Aktifitas Organisasi lainnya
                                     </label>
                                     <input type="hidden" value="{{ old('organisasi_lain', json_encode($anggota->organisasiLain)) }}" name="organisasi_lain">
-                                    <button class="btn btn-primary btn-sm mb-2 btn-tambah-organisasi_lain">
+                                    <button tabindex="-1" class="btn btn-primary btn-sm mb-2 btn-tambah-organisasi_lain">
                                         <i class="fas fa-plus"></i>
                                         Tambah data
                                     </button>
@@ -693,7 +693,7 @@
                                                 <i class="fas fa-sitemap"></i> 
                                             </span>
                                         </div>
-                                        <input type="text" class="form-control" name="struktur_organisasi" placeholder="Misalnya: PCNU, MWCNU, LPNU, PRNU ...">
+                                        <input type="text" class="form-control" name="struktur_organisasi" placeholder="Misalnya: PCNU, MWCNU, LPNU, PRNU ..." required>
                                     </div>
                                 </div>
                             </div>
@@ -706,7 +706,7 @@
                                                 <i class="fas fa-user-tie"></i>
                                             </span>
                                         </div>
-                                        <input type="text" class="form-control" name="jabatan" placeholder="Tuliskan jabatan...">
+                                        <input type="text" class="form-control" name="jabatan" placeholder="Tuliskan jabatan..." required>
                                     </div>
                                 </div>
                             </div>
@@ -775,7 +775,7 @@
                                                 <i class="fas fa-sitemap"></i> 
                                             </span>
                                         </div>
-                                        <input type="text" class="form-control" name="nama_organisasi" placeholder="Tuliskan nama organisasi lain ...">
+                                        <input type="text" class="form-control" name="nama_organisasi" placeholder="Tuliskan nama organisasi lain ..." required>
                                     </div>
                                 </div>
                             </div>
@@ -788,7 +788,7 @@
                                                 <i class="fas fa-user-tie"></i>
                                             </span>
                                         </div>
-                                        <input type="text" class="form-control" name="jabatan" placeholder="Tuliskan jabatan...">
+                                        <input type="text" class="form-control" name="jabatan" placeholder="Tuliskan jabatan..." required>
                                     </div>
                                 </div>
                             </div>
@@ -851,8 +851,8 @@
                         <tr>
                             <td>${organisasi.struktur_organisasi}</td>
                             <td>${organisasi.jabatan}</td>
-                            <td>${organisasi.masa_jabat_awal}</td>
-                            <td>${organisasi.masa_jabat_akhir}</td>
+                            <td>${(organisasi.masa_jabat_awal || '-')}</td>
+                            <td>${(organisasi.masa_jabat_akhir || '-')}</td>
                             <td>
                                 <button type='button' data-index='${index}' class='btn btn-danger btn-sm btn-hapus-organisasi_nu rounded-circle'>
                                     <i class='fas fa-trash'></i>
@@ -867,7 +867,7 @@
                     e.preventDefault()
                     if (confirm('Anda yakin akan menghapus data organisasi nu ini?')) {
                         index = $(this).data('index')
-                        delete dataOrganisasiNu[index]
+                        dataOrganisasiNu.splice(index, 1)
                         refreshDataOrganisasiNu()
                     }
                 })
@@ -879,15 +879,21 @@
             $("#modal-tambah-organisasi_nu form").submit(function (e) {
                 e.preventDefault()
                 form = $(this);
-                dataOrganisasiNu.push({
-                    struktur_organisasi: form.find("input[name='struktur_organisasi']").val(),
-                    jabatan: form.find("input[name='jabatan']").val(),
-                    masa_jabat_awal: form.find("input[name='masa_jabat_awal']").val(),
-                    masa_jabat_akhir: form.find("input[name='masa_jabat_akhir']").val()
-                })
-                refreshDataOrganisasiNu()
-                $("#modal-tambah-organisasi_nu").modal('hide')
-                $(this)[0].reset()
+                struktur_organisasi = form.find("input[name='struktur_organisasi']").val()
+                jabatan = form.find("input[name='jabatan']").val()
+                if (struktur_organisasi != '' && jabatan != '') {
+                    dataOrganisasiNu.push({
+                        struktur_organisasi: form.find("input[name='struktur_organisasi']").val(),
+                        jabatan: form.find("input[name='jabatan']").val(),
+                        masa_jabat_awal: form.find("input[name='masa_jabat_awal']").val(),
+                        masa_jabat_akhir: form.find("input[name='masa_jabat_akhir']").val()
+                    })
+                    refreshDataOrganisasiNu()
+                    $("#modal-tambah-organisasi_nu").modal('hide')
+                    $(this)[0].reset()
+                } else {
+                    alert('Isi struktur organisasi dan jabatan terlebih dahulu')
+                }
             })
 
             @if (old('organisasi_lain', json_encode($anggota->organisasiLain)) != '')
@@ -903,8 +909,8 @@
                         <tr>
                             <td>${organisasi.nama_organisasi}</td>
                             <td>${organisasi.jabatan}</td>
-                            <td>${organisasi.masa_jabat_awal}</td>
-                            <td>${organisasi.masa_jabat_akhir}</td>
+                            <td>${(organisasi.masa_jabat_awal || '-')}</td>
+                            <td>${(organisasi.masa_jabat_akhir || '-')}</td>
                             <td>
                                 <button type='button' data-index='${index}' class='btn btn-danger btn-sm btn-hapus-organisasi_lain rounded-circle'>
                                     <i class='fas fa-trash'></i>
@@ -919,7 +925,7 @@
                     e.preventDefault()
                     if (confirm('Anda yakin akan menghapus data organisasi ini?')) {
                         index = $(this).data('index')
-                        delete dataOrganisasiLain[index]
+                        dataOrganisasiLain.splice(index, 1);
                         refreshDataOrganisasiLain()
                     }
                 })
@@ -931,15 +937,22 @@
             $("#modal-tambah-organisasi_lain form").submit(function (e) {
                 e.preventDefault()
                 form = $(this);
-                dataOrganisasiLain.push({
-                    nama_organisasi: form.find("input[name='nama_organisasi']").val(),
-                    jabatan: form.find("input[name='jabatan']").val(),
-                    masa_jabat_awal: form.find("input[name='masa_jabat_awal']").val(),
-                    masa_jabat_akhir: form.find("input[name='masa_jabat_akhir']").val()
-                })
-                refreshDataOrganisasiLain()
-                $("#modal-tambah-organisasi_lain").modal('hide')
-                $(this)[0].reset()
+                nama_organisasi = form.find("input[name='nama_organisasi']").val()
+                jabatan = form.find("input[name='jabatan']").val()
+                if (nama_organisasi != '' && jabatan != '') {
+                    dataOrganisasiLain.push({
+                        nama_organisasi: form.find("input[name='nama_organisasi']").val(),
+                        jabatan: form.find("input[name='jabatan']").val(),
+                        masa_jabat_awal: form.find("input[name='masa_jabat_awal']").val(),
+                        masa_jabat_akhir: form.find("input[name='masa_jabat_akhir']").val()
+                    })
+                    refreshDataOrganisasiLain()
+                    $("#modal-tambah-organisasi_lain").modal('hide')
+                    $(this)[0].reset()
+                }
+                else {
+                    alert('Isi nama organisasi dan jabatan terlebih dahulu')
+                }
             })
 
             $("input[name='foto_diri']").change(function (e) {
@@ -990,7 +1003,7 @@
                 })
                 .done(function (data) {
                     if (data.status == 'success') {
-                        $("select[name='kelurahan']").html(`<option value=''></option>`)
+                        $("select[name='kelurahan']").html(`<option value=''>---</option>`)
                         data.data.forEach(function (wilayah) {
                             option = document.createElement('option')
                             option.value = wilayah.kelurahan
@@ -1007,6 +1020,8 @@
                 getKelurahan(`{{ old('kecamatan', $anggota->kecamatan) }}`, function() {
                     $("option[value='{{ old('kelurahan', $anggota->kelurahan) }}']").attr('selected', 'selected')
                 })
+            @elseif (old('kecamatan', $anggota->kecamatan) != '')
+                getKelurahan(`{{ old('kecamatan', $anggota->kecamatan) }}`)
             @endif
 
         });
