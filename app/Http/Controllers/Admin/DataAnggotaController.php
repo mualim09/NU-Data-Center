@@ -110,9 +110,18 @@ class DataAnggotaController extends Controller
         ]);
 
 
-        $pathFotoDiri = 'storage/' . $request->file('foto_diri')->store('anggota/foto_diri');
-        $pathScanKtp = 'storage/' . $request->file('scan_ktp')->store('anggota/scan_ktp');
-        $pathScanKartanu = 'storage/' . $request->file('scan_kartanu')->store('anggota/scan_kartanu');
+        $pathFotoDiri = 'images/img-unavailable.png';
+        if ($request->hasFile('foto_diri')) {
+            $pathFotoDiri = 'storage/' . $request->file('foto_diri')->store('anggota/foto_diri');
+        }
+        $pathScanKtp = 'images/img-unavailable.png';
+        if ($request->hasFile('scan_ktp')) {
+            $pathScanKtp = 'storage/' . $request->file('scan_ktp')->store('anggota/scan_ktp');
+        }
+        $pathScanKartanu = 'images/img-unavailable.png';
+        if ($request->hasFile('scan_kartanu')) {
+            $pathScanKartanu = 'storage/' . $request->file('scan_kartanu')->store('anggota/scan_kartanu');
+        }
 
         $anggota = Anggota::create([
             'no_kartanu' => $request->no_kartanu,
