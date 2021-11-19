@@ -35,9 +35,9 @@ class CreateAnggotaTable extends Migration
 			$table->string('jabatan_nu');
 			$table->string('asuransi_kesehatan');
 			$table->bigInteger('pkp_id')->unsigned()->nullable();
-			$table->foreign('pkp_id')->references('id')->on('pkp');
-			$table->foreign('anggota_pendidikan_id')->references('id')->on('anggota_pendidikan');
-			$table->foreign('anggota_pekerjaan_id')->references('id')->on('anggota_pekerjaan');
+			$table->foreign('pkp_id')->references('id')->on('pkp')->nullOnDelete();
+			$table->foreign('anggota_pendidikan_id')->references('id')->on('anggota_pendidikan')->onDelete('set null');
+			$table->foreign('anggota_pekerjaan_id')->references('id')->on('anggota_pekerjaan')->onDelete('set null');
 			$table->timestamps();
         });
     }

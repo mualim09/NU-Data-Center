@@ -37,7 +37,7 @@ class DataAnggotaController extends Controller
      */
     public function list(Request $request)
     {
-        $dataAnggota = Anggota::orderBy('nama', 'asc');
+        $dataAnggota = Anggota::with('pendidikan')->orderBy('nama', 'asc');
 
         if ($request->has('nama')) {
             $dataAnggota->where('nama', 'like', '%' . $request->nama . '%');
@@ -331,6 +331,13 @@ class DataAnggotaController extends Controller
      */
     public function destroy(Anggota $anggota)
     {
-        //
+        $anggota->pekerjaan()->delete();
+        $anggota->pendidikan()->delete();
+        $anggota->delete();
+
+        return redirect()->route('admin.data_anggota.index')
+            ->with('success', 'Data anggota berhasil dihapus!')
+            ->with('icon', 'fas fa-thumbs-up')
+            ->with('color', 'success');
     }
 }

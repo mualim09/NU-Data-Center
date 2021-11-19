@@ -15,7 +15,7 @@ class CreateAnggotaPendidikanTable extends Migration
             $table->string('jurusan');
             $table->bigInteger('pondok_id')->unsigned()->nullable();
             $table->string('pendidikan_pesantren');
-            $table->foreign('pondok_id')->references('id')->on('pondok');
+            $table->foreign('pondok_id')->references('id')->on('pondok')->onDelete('set null');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -17,7 +17,7 @@ class CreateAnggotaOrganisasiNuTable extends Migration
             $table->date('masa_jabat_awal')->nullable();
             $table->date('masa_jabat_akhir')->nullable();
 
-            $table->foreign('anggota_id')->references('id')->on('anggota');
+            $table->foreign('anggota_id')->references('id')->on('anggota')->cascadeOnDelete();
             $table->timestamps();
             $table->softDeletes();
         });

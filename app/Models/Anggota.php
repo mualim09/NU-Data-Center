@@ -12,7 +12,7 @@ class Anggota extends Model
     protected $table = 'anggota';
     protected $guarded = ['id'];
 
-    protected $with = ['pendidikan', 'pekerjaan', 'pkp'];
+    protected $with = ['organisasiLain', 'organisasiNu'];
 
     public function organisasiLain()
     {

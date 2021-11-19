@@ -29,9 +29,13 @@
                 <a href="{{ route('admin.data_anggota.edit', ['anggota' => $row->id]) }}" class="btn mr-1 mb-1 btn-secondary rounded rounded-circle btn-sm p-1" data-placement='left' title='Edit'>
                     <i class="fas fa-pencil-alt" style="width: 18px"></i>
                 </a>
-                <a href="#" class="btn mr-1 mb-1 btn-danger rounded rounded-circle btn-sm p-1" data-placement='left' title='Hapus'>
-                    <i class="fas fa-trash" style="width: 18px"></i>
-                </a>
+                <form action="{{ route('admin.data_anggota.destroy', ['anggota' => $row->id]) }}" method="POST" onsubmit="return confirm('Anda yakin ingin menghapus data ini?')">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn mr-1 mb-1 btn-danger rounded rounded-circle btn-sm p-1" data-placement='left' title='Hapus'>
+                        <i class="fas fa-trash" style="width: 18px"></i>
+                    </button>
+                </form>
             </div>
         </td>
     </tr>

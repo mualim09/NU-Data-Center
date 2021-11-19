@@ -1,0 +1,61 @@
+* [33mf850e3a[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m fix: beberapa bug pada form tambah dan edit
+[31m|[m *   [33m68f0ae3[m[33m ([m[1;35mrefs/stash[m[33m)[m WIP on main: c6098c4 --amend
+[31m|[m [32m|[m[33m\[m  
+[31m|[m [32m|[m * [33m21341b4[m index on main: c6098c4 --amend
+[31m|[m [32m|[m[32m/[m  
+[31m|[m * [33mc6098c4[m --amend
+[31m|[m * [33md388099[m fix: beberapa bug pada form tambah dan edit
+[31m|[m[31m/[m  
+* [33m4f0508f[m add: menambahkan fitur edit data anggota
+* [33mfe3969c[m fix: set default gambar jika tidak ada input file saat submit
+* [33md611a93[m[33m ([m[1;31morigin/main[m[33m)[m add: menambahkan validasi form tambah data anggota
+* [33m2bea0cf[m add: penulisan method database store
+* [33mb2ce628[m add: konfigurasi env saat melakukan migration
+* [33maa40b83[m feat: menambahkan command migration
+* [33m44d4c1f[m fix: mengatur nullable pada kolom masa jabat di tabel organisasi
+* [33mab14196[m fix: guard field di setiap model untuk mass assignment
+* [33md42333a[m add: seeder database wilayah
+* [33m0e8e7ea[m fix: set nullable pada maps lattitude longitude
+* [33m781a9d2[m add: menambahkan entry interaktif dataset organisasi lain
+* [33mf828def[m feat: menambahkan fitur entry dinamis kecamatan dan kelurahan ;
+* [33m9506f5e[m add: halaman tambah data anggota untuk administrator
+* [33m2675f2d[m add: menambahkan back button pada halaman detail anggota
+* [33m21c314c[m feat: menambahkan yield navbar-item untuk bisa dinamis
+* [33mafc898f[m add: responsitifitas filter dan tombol tambah data di list anggota
+* [33m2a6ceee[m fix: redirect root ke halaman manajemen anggota
+* [33m592bcc7[m fix: update link menu navigasi sidebar
+* [33m8288dc8[m fix: memperbarui faker  penghasilan perbulan
+* [33m033834e[m feat: menghapus package yajra karena crud dibuat manual untuk ui yang lebih baik
+* [33m59dba05[m fix: mengecilkan ukuran navbar atas dashboard administrator
+* [33m3c9c7c8[m add: halaman detail data anggota
+* [33m8614122[m fix: factory nama pondok yang seharusnya menggunakan nama dan kota
+* [33mc27bf7d[m fix: perbaikan di main argon
+* [33md003136[m add: membuat list tabel endpoint, pagination dan filter data
+* [33m41c54b8[m add: membuat halaman list anggota
+* [33m41f1e45[m add: menambahkan eager loading di model Anggota
+* [33m3a6b64b[m add: menambahkan controller dan membuat endpoint data anggota
+* [33m00e3376[m fix: merubah tipedata tanggal_lahir dari datetime menjadi date
+* [33m08b708c[m fix: updated workflow directory exception
+* [33m46ac66a[m style: fix penulisan kode berdasarkan workflow
+* [33m47e9b4a[m fix: update seeder
+* [33m70d769d[m fix: kesalahan factory nama kolom masa_jabat & menambah opsi pendidikan dan jurusan
+* [33meb6766c[m fix: memperbaiki titik koma pada model Pekerjaan dan menambahkan relasi PKP
+* [33m3110706[m fix: memberikan nullable dan default value pada setiap foreign key yang ada berdasarkan erd
+* [33m3566610[m add: factory data testing
+* [33m1a58dcc[m add: guard field di setiap model
+* [33m01c59bd[m add: ORM relationship di antara model
+* [33md125602[m add: model, factory dan seeder untuk operasi database
+* [33m9b4af2f[m feat: penerapan yajra datatable initial
+* [33meb614c9[m add: menambahkan template ui argon untuk halaman admin
+* [33md617b14[m fix: script composer untuk workflow otomasi codesniffer
+* [33mb37d024[m feat: file migration selesai untuk initial database awal
+* [33m230a72a[m add: menghapus migration lama bawaan laravel
+* [33ma9ffebf[m fix: workflow phpcs.xml integration with vscode extension
+*   [33mfa4a469[m Merge pull request #1 from wildanie12/database-migration
+[34m|[m[35m\[m  
+[34m|[m * [33m849dbbc[m[33m ([m[1;31morigin/database-migration[m[33m, [m[1;32mdatabase-migration[m[33m)[m add: codesniffer workflow ruleset and execution
+[34m|[m * [33m9d9fc5d[m add: database migrations initial commit
+* [35m|[m [33m2ba08be[m add: workflow codesniffer PSR-12 based style
+* [35m|[m [33m121cd57[m add: workflow laravel
+[35m|[m[35m/[m  
+* [33mde05191[m Initial project with Laravel 8
