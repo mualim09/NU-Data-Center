@@ -178,7 +178,7 @@ class DataAnggotaController extends Controller
             ->with('success', 'Data anggota berhasil dientry!')
             ->with('icon', 'fas fa-thumbs-up')
             ->with('color', 'success')
-            ->with('nama', $anggota->nama);
+            ->with('anggota_nama', $anggota->nama);
     }
 
     /**

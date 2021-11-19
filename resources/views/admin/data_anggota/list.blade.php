@@ -217,6 +217,15 @@
             })
         }
 
+        @if (session()->has('anggota_nama'))
+            $(".filter-nama").val(`{{ session('anggota_nama') }}`)
+            dataParams.nama = '{{ session('anggota_nama') }}'
+            refreshData()
+            $(".filter-nama").focus()
+        @else
+            refreshData()
+        @endif
+
         $(".filter-nama").on('input', function(e) {
             value = $(this).val()
             if (value != '')
