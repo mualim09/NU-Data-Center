@@ -14,8 +14,9 @@ class CreateAdminTable extends Migration
     public function up()
     {
         Schema::create('admin', function (Blueprint $table) {
-            $table->string('username');
-            $table->text('password');
+            $table->id();
+            $table->string('username')->unique();
+            $table->string('password');
             $table->string('nama_lengkap');
             $table->text('avatar');
             $table->date('tanggal_lahir')->nullable();
@@ -26,7 +27,6 @@ class CreateAdminTable extends Migration
             $table->string('admin_username')->nullable();
             $table->timestamps();
             $table->softDeletes();
-            $table->primary('username');
         });
     }
 

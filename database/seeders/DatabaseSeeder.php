@@ -10,6 +10,7 @@ use App\Models\AnggotaPekerjaan;
 use App\Models\AnggotaPendidikan;
 use App\Models\PKP;
 use App\Models\Pondok;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -27,6 +28,7 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class
         ]);
 
+        User::factory()->count(3)->create();
         Admin::factory()->count(3)->create();
 
         $pondok = Pondok::factory()->count(5)->create();

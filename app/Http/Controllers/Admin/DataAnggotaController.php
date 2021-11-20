@@ -14,6 +14,7 @@ use App\Models\PKP;
 use App\Models\Pondok;
 use App\Models\Wilayah;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class DataAnggotaController extends Controller

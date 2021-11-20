@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DataAnggotaController;
+use App\Http\Controllers\Auth\AuthController;
 use App\Models\Anggota;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -18,8 +19,15 @@ use Yajra\DataTables\DataTables;
 |
 */
 
-Route::get('/', [DataAnggotaController::class, 'index']);
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::get('/', [AuthController::class, 'index']);
+
+
+Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
+    Route::get('/', [DataAnggotaController::class, 'index']);
     Route::get('data_anggota/list', [DataAnggotaController::class, 'list'])->name('data_anggota.list');
     Route::resource('data_anggota', DataAnggotaController::class)->parameter('data_anggota', 'anggota');
 });
+
+Route::get('/login', [AuthController::class, 'index'])->name('auth.login');
+Route::post('/login', [AuthController::class, 'store']);
+Route::post('/logout', [AuthController::class, 'destroy'])->name('auth.logout');
