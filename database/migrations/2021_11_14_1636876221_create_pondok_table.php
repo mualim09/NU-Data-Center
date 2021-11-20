@@ -11,8 +11,8 @@ class CreatePondokTable extends Migration
         Schema::create('pondok', function (Blueprint $table) {
 
             $table->id()->autoIncrement();
-            $table->string('nama');
-            $table->text('alamat');
+            $table->string('nama')->nullable();
+            $table->text('alamat')->nullable();
             $table->text('alamat_maps')->nullable();
             $table->timestamps();
             $table->softDeletes();

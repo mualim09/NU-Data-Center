@@ -11,7 +11,7 @@ class CreatePkpTable extends Migration
         Schema::create('pkp', function (Blueprint $table) {
 
             $table->id()->autoIncrement();
-            $table->string('angkatan_pkp');
+            $table->string('angkatan_pkp')->nullable();
             $table->string('lokasi_kegiatan')->nullable();
             $table->datetime('waktu_kegiatan')->nullable();
             $table->timestamps();
