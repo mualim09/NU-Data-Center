@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Admin;
 use App\Models\Anggota;
 use App\Models\AnggotaOrganisasiLain;
 use App\Models\AnggotaOrganisasiNu;
@@ -21,7 +22,12 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        $this->call([WilayahSeeder::class]);
+        $this->call([
+            WilayahSeeder::class,
+            AdminSeeder::class
+        ]);
+
+        Admin::factory()->count(3)->create();
 
         $pondok = Pondok::factory()->count(5)->create();
         $pkp = PKP::factory()->count(5)->create();
