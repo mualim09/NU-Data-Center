@@ -38,7 +38,7 @@
 
 <body>
     <!-- Sidenav -->
-    <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+    <nav class="d-print-none sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
         <div class="scrollbar-inner">
             <!-- Brand -->
             <div class="sidenav-header mt-2 align-items-center mb-2">
@@ -59,13 +59,13 @@
                     <!-- Nav items -->
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link {{ (request()->routeIs('admin.data_anggota.*')) ? 'active' : '' }}" href="{{ route('admin.data_anggota.index') }}">
+                            <a class="nav-link {{ (request()->routeIs('admin.data_anggota*')) ? 'active' : '' }}" href="{{ route('admin.data_anggota.index') }}">
                                 <i class="fas fa-users text-primary"></i>
                                 <span class="nav-link-text">Data Anggota</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link @if(request()->routeIs('admin.laporan*')) active @endif" href="{{ route('admin.laporan') }}">
                                 <i class="fas fa-clipboard text-primary"></i>
                                 <span class="nav-link-text">Laporan</span>
                             </a>
@@ -97,7 +97,7 @@
         </div>
     </nav>
     <!-- Main content -->
-    <div class="main-content" id="panel">
+    <div class="main-content d-print-none" id="panel">
         <!-- Topnav -->
         @include('argon/navbar')
         @yield('content')
@@ -113,6 +113,10 @@
                 </div>
             </footer>
         </div>
+    </div>
+
+    <div class="print d-print-block pt-4">
+        @yield('print')
     </div>
     <!-- Argon Scripts -->
     <!-- Core -->

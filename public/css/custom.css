@@ -114,16 +114,23 @@
 	text-align: left !important;
 	border: 0 !important;
 }
-.table-condensed tr > * {
-	border: 0 !important;
-	padding: 0 !important;
+.table-condensed {
+	table-layout: fixed;
+	width: 100%;
+}
+.table-condensed tr > td {
+	/* border: 0 !important;
+	padding: 8px 0 !important;
 	text-align: left !important;
-	white-space: pre-wrap;
 	vertical-align: middle;
     font-family: sans-serif;
-    font-size: 11pt;
+    font-size: 11pt; */
+	white-space: normal;
+	word-wrap: break-word;
 }
-
+.print tr > *, .print a, .print h1, .print h2, .print h3, .print h4, .print h5 {
+	color: black;
+}
 
 .triangle {
 	position: absolute;
