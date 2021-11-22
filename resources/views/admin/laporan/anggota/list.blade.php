@@ -21,11 +21,22 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-auto">
-                    <button onclick="window.print()" class="btn btn-secondary btn-sm">
-                        <i class="fas fa-print mr-1"></i>
-                        Cetak
-                    </button>
+                <div class="col-auto d-flex">
+                    <div class="mr-2">
+                        <button onclick="window.print()" class="btn btn-secondary btn-sm">
+                            <i class="fas fa-print mr-1"></i>
+                            Cetak
+                        </button>
+                    </div>
+                    <div>
+                        <form action="{{ route('admin.laporan.anggota.export') }}" method="POST">
+                            @csrf
+                            <button type='submit' class="btn btn-sm btn-success" style="background-color: #099543; border-color: #099543">
+                                <i class="fas fa-file-excel mr-1"></i>
+                                Export
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

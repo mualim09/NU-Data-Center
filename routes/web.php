@@ -31,12 +31,17 @@ Route::middleware('auth')->group(function () {
 
         Route::get('laporan/', [LaporanController::class, 'index'])->name('laporan');
         Route::get('laporan/anggota', [LaporanController::class, 'index'])->name('laporan.anggota');
+        Route::post('laporan/anggota/export', [LaporanController::class, 'export'])->name('laporan.anggota.export');
     });
 
     Route::resource('anggota', AnggotaResource::class)->parameter('anggota', 'anggota');
     Route::post('/logout', [AuthController::class, 'destroy'])->name('auth.logout');
 });
 
+Route::get('/experiment', function () {
+    $data['data'] = Anggota::with(['pendidikan', 'pekerjaan'])->orderBy('nama', 'asc')->get();
+    return view('admin.laporan.anggota.exports.table-excel', $data);
+});
 
 Route::middleware('guest')->group(function () {
     Route::get('/', [AuthController::class, 'index'])->name('home');
