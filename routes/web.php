@@ -38,10 +38,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'destroy'])->name('auth.logout');
 });
 
-Route::get('/experiment', function () {
-    $data['data'] = Anggota::with(['pendidikan', 'pekerjaan'])->orderBy('nama', 'asc')->get();
-    return view('admin.laporan.anggota.exports.table-excel', $data);
-});
 
 Route::middleware('guest')->group(function () {
     Route::get('/', [AuthController::class, 'index'])->name('home');
