@@ -54,7 +54,8 @@
         ],
         "phpcs": "phpcs . --ignore=*/vendor/*,*/tests/* --warning-severity=0 --colors --standard=phpcs.xml -s",
         "phpcbf": "phpcbf . --ignore=*/vendor/*,*/tests/* --standard=phpcs.xml",
-        "phpunit": "php artisan test"
+        "phpunit": "php artisan test",
+        "phplint": "phplint . --exclude=vendor"
     },
     "extra": {
         "laravel": {
