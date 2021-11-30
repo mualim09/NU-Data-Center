@@ -1,14 +1,10 @@
 <?php
 
-use App\Http\Controllers\Admin\DataAnggotaController;
+use App\Http\Controllers\Admin\Data\AnggotaController;
 use App\Http\Controllers\Admin\Laporan\LaporanController;
 use App\Http\Controllers\Api\AnggotaResource;
 use App\Http\Controllers\Auth\AuthController;
-use App\Models\Anggota;
-use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Yajra\DataTables\DataTables;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,9 +21,9 @@ use Yajra\DataTables\DataTables;
 
 Route::middleware('auth')->group(function () {
     Route::prefix('admin')->name('admin.')->group(function () {
-        Route::get('/', [DataAnggotaController::class, 'index']);
-        Route::get('data_anggota/list', [DataAnggotaController::class, 'list'])->name('data_anggota.list');
-        Route::resource('data_anggota', DataAnggotaController::class)->parameter('data_anggota', 'anggota');
+        Route::get('/', [AnggotaController::class, 'index']);
+        Route::get('data_anggota/list', [AnggotaController::class, 'list'])->name('data_anggota.list');
+        Route::resource('data_anggota', AnggotaController::class)->parameter('data_anggota', 'anggota');
 
         Route::get('laporan/', [LaporanController::class, 'index'])->name('laporan');
         Route::get('laporan/anggota', [LaporanController::class, 'index'])->name('laporan.anggota');
