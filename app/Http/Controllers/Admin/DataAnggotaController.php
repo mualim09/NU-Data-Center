@@ -31,35 +31,6 @@ class DataAnggotaController extends Controller
         return view('admin.data_anggota.list', $data);
     }
 
-    /**
-     * Display a listing of the resource via API
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function list(Request $request)
-    {
-        $dataAnggota = Anggota::with('pendidikan')->orderBy('nama', 'asc');
-
-        if ($request->has('nama')) {
-            $dataAnggota->where('nama', 'like', '%' . $request->nama . '%');
-        }
-        if ($request->has('jabatan_nu')) {
-            $dataAnggota->where('jabatan_nu', $request->jabatan_nu);
-        }
-        if ($request->has('aktifitas_nu')) {
-            $dataAnggota->where('aktifitas_nu', $request->aktifitas_nu);
-        }
-        $limit = 50;
-        if ($request->has('limit')) {
-            $limit = $request->limit;
-        }
-
-        $data['data'] = $dataAnggota->paginate($limit);
-        return response()->json([
-            'content' => view('admin.data_anggota.ajax.table', $data)->render(),
-            'pagination' => view('admin.data_anggota.ajax.pagination', $data)->render()
-        ]);
-    }
 
     /**
      * Show the form for creating a new resource.

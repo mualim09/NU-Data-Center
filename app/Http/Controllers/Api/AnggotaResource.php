@@ -58,12 +58,11 @@ class AnggotaResource extends Controller
             $limit = $request->limit;
         }
 
-
         $data['data'] = $dataAnggota->paginate($limit);
         return response()->json([
             'content' => view($request->view_content, $data)->render(),
             'pagination' => view($request->view_pagination, $data)->render(),
-            'filter' => view($request->view_filter, $data)->render()
+            'filter' => ($request->has('view_filter')) ? view($request->view_filter, $data)->render() : ''
         ]);
     }
 

@@ -186,11 +186,13 @@
         @endif
 
 
-        let dataParams = {
+        const dataParams = {
+            view_content: 'admin.data_anggota.ajax.table',
+            view_pagination: 'admin.data_anggota.ajax.pagination',
             limit: 50
         }
         function refreshData(link) {
-            if (link === undefined) link = "{{ route('admin.data_anggota.list') }}"
+            if (link === undefined) link = "{{ route('anggota.index') }}"
             $(".progress").css('visibility', 'visible')
             $.ajax({
                 type: "GET",

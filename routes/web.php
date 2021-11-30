@@ -35,12 +35,12 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::resource('anggota', AnggotaResource::class)->parameter('anggota', 'anggota');
-    Route::post('/logout', [AuthController::class, 'destroy'])->name('auth.logout');
+    Route::post('logout', [AuthController::class, 'destroy'])->name('auth.logout');
 });
 
 
 Route::middleware('guest')->group(function () {
-    Route::get('/', [AuthController::class, 'index'])->name('home');
-    Route::get('/login', [AuthController::class, 'index'])->name('auth.login');
-    Route::post('/login', [AuthController::class, 'store']);
+    Route::get('', [AuthController::class, 'index'])->name('home');
+    Route::get('login', [AuthController::class, 'index'])->name('auth.login');
+    Route::post('login', [AuthController::class, 'store']);
 });
