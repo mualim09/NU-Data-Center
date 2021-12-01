@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\Data\AnggotaController;
 use App\Http\Controllers\Admin\Laporan\LaporanController;
 use App\Http\Controllers\Api\AnggotaResource;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Wilayah\CityResource;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +32,7 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::resource('anggota', AnggotaResource::class)->parameter('anggota', 'anggota');
+    Route::resource('resource/city', CityResource::class)->parameter('city', 'city');
     Route::post('logout', [AuthController::class, 'destroy'])->name('auth.logout');
 });
 
