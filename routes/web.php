@@ -5,8 +5,8 @@ use App\Http\Controllers\Admin\Laporan\LaporanController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Resources\AnggotaResource;
 use App\Http\Controllers\Resources\Wilayah\CityResource;
-use App\Http\Controllers\Wilayah\DistrictResource;
-use App\Http\Controllers\Wilayah\SubDistrictResource;
+use App\Http\Controllers\Resources\Wilayah\DistrictResource;
+use App\Http\Controllers\Resources\Wilayah\SubDistrictResource;
 use Illuminate\Support\Facades\Route;
 
 /*

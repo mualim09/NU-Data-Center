@@ -13,6 +13,7 @@ use App\Models\AnggotaPendidikan;
 use App\Models\PKP;
 use App\Models\Pondok;
 use App\Models\Wilayah;
+use App\Models\Wilayah\City;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -39,14 +40,10 @@ class AnggotaController extends Controller
      */
     public function create()
     {
-        $data['anggota'] = Anggota::find(1);
-        $data['dataKecamatan'] = Wilayah::orderBy('kecamatan', 'asc')
-            ->select('kecamatan')
-            ->distinct()
-            ->get()
-            ->map(function ($item) {
-                return $item->kecamatan;
-            });
+        $data['dataCity'] = City::orderBy('city_name', 'asc')
+            ->where('prov_id', 15)
+            ->get();
+
         return view('admin.data_anggota.create', $data);
     }
 
@@ -173,13 +170,9 @@ class AnggotaController extends Controller
      */
     public function edit(Anggota $anggota)
     {
-        $data['dataKecamatan'] = Wilayah::orderBy('kecamatan', 'asc')
-            ->select('kecamatan')
-            ->distinct()
-            ->get()
-            ->map(function ($item) {
-                return $item->kecamatan;
-            });
+        $data['dataCity'] = City::orderBy('city_name', 'asc')
+            ->where('prov_id', 15)
+            ->get();
         $data['anggota'] = $anggota;
         return view('admin.data_anggota.edit', $data);
     }

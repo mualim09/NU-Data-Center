@@ -21,7 +21,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col d-flex align-items-center" style="line-height: 12px">
-                    <i class="fas fa-plus-circle mr-3 text-white" style="font-size: 40px"></i>
+                    <i class="fas fa-pencil-alt mr-4 text-white" style="font-size: 40px"></i>
                     <div class="pb-2">
                         <h2 class="mb-0 text-uppercase text-white font-weight-bolder">Edit data anggota</h2>
                         <span class="font-weight-bolder text-xs text-uppercase" style="color: #cbffeb;">{{ \Carbon\Carbon::now()->format('d F Y, H:i:s') }}</span>
@@ -185,7 +185,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row ml-2 mb-4 pb-1">
+                            <div class="row ml-2 pb-1">
                                 <div class="col-md">
                                     <label class="text-xs mb-1 d-flex align-items-center" style="color: #a595c5">
                                         <i class="fas fa-map-marker-alt mr-2" style="font-size: 12px"></i>
@@ -193,13 +193,13 @@
                                     </label>
                                     <div class="input-group input-group-merge">
                                         <select name="kabupaten" class="form-control @error('kabupaten') is-invalid @enderror" required>
-                                            <option value="Malang">Malang</option>
+                                            <option value="">---</option>
+                                            @foreach ($dataCity as $city)
+                                                <option @if(old('kabupaten', $anggota->kabupaten) == $city->city_name) selected @endif data-id="{{ $city->city_id }}" value="{{ $city->city_name }}">{{ ucwords(strtolower($city->city_name)) }}</option>
+                                            @endforeach
                                         </select>
                                         <select name="kecamatan" class="form-control @error('kecamatan') is-invalid @enderror" required>
                                             <option value="">---</option>
-                                            @foreach ($dataKecamatan as $kecamatan)
-                                                <option @if(old('kecamatan', $anggota->kecamatan) == $kecamatan) selected @endif value="{{ $kecamatan }}">{{ ucwords(strtolower($kecamatan)) }}</option>
-                                            @endforeach
                                         </select>
                                         <select name="kelurahan" class="form-control @error('kelurahan') is-invalid @enderror" required>
                                             <option value="">---</option>
@@ -220,6 +220,13 @@
                                             {{ $message }}
                                         </div>
                                     @enderror
+                                </div>
+                            </div>
+                            <div class="row ml-2 mb-4 progress-wrapper pt-0" style="visibility: hidden">
+                                <div class="col">
+                                    <div class="progress">
+                                        <div class="progress-bar bg-blue progress-bar-striped progress-bar-animated" style="width: 100%"></div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row ml-2 mb-4 pb-1">
@@ -985,29 +992,68 @@
                     }
                 }
             })
+            $("select[name='kabupaten']").change(function (e) {
+                value = $(this).find('option:selected').data('id')
+                if (value != '') {
+                    getKecamatan(value)
+                }
+            })
             $("select[name='kecamatan']").change(function (e) {
-                value = $(this).val()
+                value = $(this).find('option:selected').data('id')
                 if (value != '') {
                     getKelurahan(value)
                 }
             })
-            function getKelurahan(kecamatan, callback) {
+            function getKecamatan(kabupaten, callback) {
+                $(".progress-wrapper").css('visibility', 'visible')
                 $.ajax({
                     type: "GET",
-                    url: "{{ route('wilayah.index') }}",
+                    url: "{{ route('district.index') }}",
                     data: {
-                        kecamatan: kecamatan,
-                        mode: 'kelurahan'
+                        city_id: kabupaten,
+                        view_json: true,
+                        limit: 999
                     },
                     dataType: "json",
                 })
-                .done(function (data) {
-                    if (data.status == 'success') {
+                .done(function (response) {
+                    $(".progress-wrapper").css('visibility', 'hidden')
+                    if (response.status) {
                         $("select[name='kelurahan']").html(`<option value=''>---</option>`)
-                        data.data.forEach(function (wilayah) {
+                        $("select[name='kecamatan']").html(`<option value=''>---</option>`)
+                        response.data.data.forEach(function (district) {
                             option = document.createElement('option')
-                            option.value = wilayah.kelurahan
-                            option.innerHTML = wilayah.kelurahan.toLowerCase().replace(/\b[a-z]/g, letter => letter.toUpperCase())
+                            option.value = district.dis_name
+                            option.setAttribute('data-id', district.dis_id)
+                            option.innerHTML = district.dis_name.toLowerCase().replace(/\b[a-z]/g, letter => letter.toUpperCase())
+                            $("select[name='kecamatan']").append(option)
+                        })
+                        callback = callback || 0;
+                        if (callback) callback()
+                    } 
+                })
+            }
+            function getKelurahan(kecamatan, callback) {
+                $(".progress-wrapper").css('visibility', 'visible')
+                $.ajax({
+                    type: "GET",
+                    url: "{{ route('subdistrict.index') }}",
+                    data: {
+                        dis_id: kecamatan,
+                        view_json: true,
+                        limit: 999
+                    },
+                    dataType: "json",
+                })
+                .done(function (response) {
+                    if (response.status == 'success') {
+                        $(".progress-wrapper").css('visibility', 'hidden')
+                        $("select[name='kelurahan']").html(`<option value=''>---</option>`)
+                        response.data.data.forEach(function (subdistrict) {
+                            option = document.createElement('option')
+                            option.value = subdistrict.subdis_name
+                            option.setAttribute('data-id', subdistrict.subdis_id)
+                            option.innerHTML = subdistrict.subdis_name.toLowerCase().replace(/\b[a-z]/g, letter => letter.toUpperCase())
                             $("select[name='kelurahan']").append(option)
                         })
                         callback = callback || 0;
@@ -1016,13 +1062,17 @@
                 })
             }
 
-            @if (old('kelurahan', $anggota->kelurahan) != '' && old('kecamatan', $anggota->kecamatan) != '')
-                getKelurahan(`{{ old('kecamatan', $anggota->kecamatan) }}`, function() {
-                    $("option[value='{{ old('kelurahan', $anggota->kelurahan) }}']").attr('selected', 'selected')
+            @if (old('kecamatan', $anggota->kecamatan) != '')
+                getKecamatan(`{{ App\Models\Wilayah\City::where('city_name', 'LIKE', old('kabupaten', $anggota->kabupaten))->first()->city_id }}`, function () {
+                    $("option[value='{{ old('kecamatan', $anggota->kecamatan) }}']").attr('selected', 'selected')
+                    @if (old('kecamatan', $anggota->kecamatan) != '')
+                        getKelurahan(`{{ App\Models\Wilayah\District::where('dis_name', 'LIKE', old('kecamatan', $anggota->kecamatan))->first()->dis_id }}`, function () {
+                            $("option[value='{{ old('kelurahan', $anggota->kelurahan) }}']").attr('selected', 'selected')
+                        })
+                    @endif
                 })
-            @elseif (old('kecamatan', $anggota->kecamatan) != '')
-                getKelurahan(`{{ old('kecamatan', $anggota->kecamatan) }}`)
             @endif
+
 
         });
     </script>
