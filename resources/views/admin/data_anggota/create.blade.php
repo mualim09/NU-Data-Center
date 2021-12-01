@@ -552,7 +552,7 @@
                                 <div class="col-md">
                                     <label class="text-xs mb-1 d-flex align-items-center" style="color: #a595c5">
                                         <i class="fas fa-chalkboard-teacher mr-2" style="font-size: 12px"></i>
-                                        Angkatan PKP
+                                        Angkatan Pengkaderan
                                     </label>
                                     <div class="input-group input-group-merge">
                                         <div class="input-group-prepend">
@@ -560,13 +560,13 @@
                                                 <i class="fas fa-user-tie"></i>
                                             </span>
                                         </div>
-                                        <input type="text" value="{{ old('pkp_angkatan_pkp') }}" name="pkp_angkatan_pkp" class="form-control" placeholder="Tuliskan angkatan PKP ke ...">
+                                        <input type="text" value="{{ old('pkp_angkatan_pkp') }}" name="pkp_angkatan_pkp" class="form-control" placeholder="Tuliskan angkatan Pengkaderan ke ...">
                                     </div>
                                 </div>
                                 <div class="col-md">
                                     <label class="text-xs mb-1 d-flex align-items-center" style="color: #a595c5">
                                         <i class="fas fa-map-marked-alt mr-2" style="font-size: 12px"></i>
-                                        Lokasi PKP
+                                        Lokasi Pengkaderan
                                     </label>
                                     <div class="input-group input-group-merge">
                                         <div class="input-group-prepend">
@@ -574,7 +574,7 @@
                                                 <i class="fas fa-user-tie"></i>
                                             </span>
                                         </div>
-                                        <input type="text" value="{{ old('pkp_lokasi_kegiatan') }}" name="pkp_lokasi_kegiatan" class="form-control" placeholder="Tuliskan lokasi kegiatan PKP...">
+                                        <input type="text" value="{{ old('pkp_lokasi_kegiatan') }}" name="pkp_lokasi_kegiatan" class="form-control" placeholder="Tuliskan lokasi kegiatan Pengkaderan...">
                                     </div>
                                 </div>
                                 <div class="col-md">
