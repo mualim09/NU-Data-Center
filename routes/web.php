@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\Admin\Data\AnggotaController;
 use App\Http\Controllers\Admin\Laporan\LaporanController;
-use App\Http\Controllers\Api\AnggotaResource;
 use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\Wilayah\CityResource;
+use App\Http\Controllers\Resources\AnggotaResource;
+use App\Http\Controllers\Resources\Wilayah\CityResource;
+use App\Http\Controllers\Wilayah\DistrictResource;
+use App\Http\Controllers\Wilayah\SubDistrictResource;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,8 +33,11 @@ Route::middleware('auth')->group(function () {
         Route::post('laporan/anggota/export', [LaporanController::class, 'export'])->name('laporan.anggota.export');
     });
 
-    Route::resource('anggota', AnggotaResource::class)->parameter('anggota', 'anggota');
+    Route::resource('resource/anggota', AnggotaResource::class)->parameter('anggota', 'anggota');
     Route::resource('resource/city', CityResource::class)->parameter('city', 'city');
+    Route::resource('resource/district', DistrictResource::class)->parameter('district', 'district');
+    Route::resource('resource/subdistrict', SubDistrictResource::class)->parameter('subdistrict', 'subdistrict');
+
     Route::post('logout', [AuthController::class, 'destroy'])->name('auth.logout');
 });
 
