@@ -124,11 +124,7 @@ class EntryAnggotaController extends Controller
             ]);
         });
 
-        // return redirect()->route('admin.data_anggota.index')
-        //     ->with('success', 'Data anggota berhasil dientry!')
-        //     ->with('icon', 'fas fa-thumbs-up')
-        //     ->with('color', 'success')
-        //     ->with('anggota_nama', $anggota->nama);
+        return redirect()->route('entry.show', ['anggota' => $anggota->id]);
     }
 
     /**

@@ -21,9 +21,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
     <meta name="author" content="Creative Tim">
-    <title>Argon Dashboard - Free Dashboard for Bootstrap 4</title>
+    <title>@yield('title')</title>
     <!-- Favicon -->
-    <link rel="icon" href="{{ asset('header-logo.png') }}" type="image/png">
+    <link rel="icon" href="{{ asset('images/ipnu-icon.png') }}" type="image/png">
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
     <!-- Icons -->
@@ -42,13 +42,17 @@
         <div class="scrollbar-inner">
             <!-- Brand -->
             <div class="sidenav-header mt-2 align-items-center mb-2">
-                <a class="navbar-brand p-0" href="https://www.lpnumalang.or.id">
+                <a class="navbar-brand p-0" href="{{ url('/') }}">
                     <div class="d-flex justify-content-center">
-                        <img src="{{ asset('header-logo.png') }}" class="navbar-brand-img" alt="..." style="max-height: 70px;">
-                        <div class="ml-2 text-left d-flex flex-column justify-content-center">
+                        <img src="{{ asset('images/ipnu-logo.png') }}" class="navbar-brand-img" alt="..." style="max-height: 70px;">
+                        <div class="ml-3 text-left d-flex flex-column justify-content-center">
                             <h4 class="text-uppercase mb-0" style="font-size: 11pt; line-height: 15px; font-weight: bolder;">
-                                Pengurus <br>Cabang <br>Nahdlatul Ulama'                            </h4> 
-                            <div style="font-size: 10pt">Kab. Malang</div>
+                                Majelis Alumni <br> 
+                                <span class="text-warning">P</span>impinan  <span class="text-warning">W</span>ilayah <br/>
+                                <span class="text-warning">I</span>katan <span class="text-warning">P</span>elajar <br/> 
+                                <span class="text-warning">N</span>ahdlatul <span class="text-warning">U</span>lama'
+                            </h4> 
+                            <div style="font-size: 10pt">Jawa Timur</div>
                         </div>
                     </div>
                 </a>
@@ -68,12 +72,6 @@
                             <a class="nav-link @if(request()->routeIs('admin.laporan*')) active @endif" href="{{ route('admin.laporan') }}">
                                 <i class="fas fa-clipboard text-primary"></i>
                                 <span class="nav-link-text">Laporan</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="fas fa-chart-bar text-primary"></i>
-                                <span class="nav-link-text">Statistik</span>
                             </a>
                         </li>
                     </ul>
@@ -107,7 +105,7 @@
                 <div class="row align-items-center justify-content-lg-between">
                     <div class="col-lg-6">
                         <div class="copyright text-center  text-lg-left  text-muted">
-                            &copy; 2021 <a href="{{ url('/') }}" class="font-weight-bold ml-1" target="_blank">PCNU Kab. Malang</a>
+                            &copy; 2021 <a href="{{ url('/') }}" class="font-weight-bold ml-1" target="_blank">PW IPNU Jawa Timur</a>
                         </div>
                     </div>
                 </div>

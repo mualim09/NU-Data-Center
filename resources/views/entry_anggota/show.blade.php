@@ -1,5 +1,7 @@
 @extends('argon.guest')
 
+@section('title') {{ $anggota->nama }} - Majelis Alumni PW IPNU Jatim @endsection
+
 @section('navbar-item')
     <li class="nav-item">
         <a href="{{ route('admin.data_anggota.index') }}" class="nav-link text-sm rounded-circle" style="padding: 8px 12px">
@@ -15,7 +17,7 @@
 
 @section('content')
 
-<header class="bg-gradient-purple pt-5 pb-7">
+<header class="bg-gradient-purple pt-4 pb-5">
     <div class="container">
         <div class="row justify-content-between align-items-center">
             <div class="col d-flex justify-content-start align-items-center">
@@ -29,7 +31,7 @@
             </div>
             <div class="col-auto text-center">
                 <div class="bg-white p-3 text-center d-inline-block rounded">
-                    {!! QrCode::size(100)->generate(route('entry.store', ['anggota' => $anggota->id])) !!}
+                    {!! QrCode::size(100)->generate(route('entry.show', ['anggota' => $anggota->id])) !!}
                 </div>
                 <h4 class="text-white mt-2">Data Sudah dientry kedalam sistem</h4>
             </div>

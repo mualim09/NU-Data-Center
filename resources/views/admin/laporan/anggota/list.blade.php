@@ -1,5 +1,7 @@
 @extends('argon.main')
 
+@section('title') Laporan data Anggota - Admin PW IPNU @endsection
+
 @section('navbar-item')
 
     <li class="nav-item">

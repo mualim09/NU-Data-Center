@@ -9,11 +9,11 @@
     </li>
 @endsection
 
-
+@section('title') Entry data Anggota - Majelis Alumni PW IPNU Jatim @endsection
 
 @section('content')
 
-    <header class="bg-gradient-success pt-5 pb-6">
+    <header class="bg-gradient-success pt-4 pb-5">
         <div class="container">
             <div class="row">
                 <div class="col d-flex align-items-center" style="line-height: 12px">
@@ -22,6 +22,9 @@
                         <h2 class="mb-0 text-uppercase text-white font-weight-bolder">Entry data anggota</h2>
                         <span class="font-weight-bolder text-xs text-uppercase" style="color: #cbffeb;">{{ \Carbon\Carbon::now()->format('d F Y, H:i:s') }}</span>
                     </div>
+                </div>
+                <div class="col-auto bg-white p-3 text-center d-inline-block rounded">
+                    {!! QrCode::size(100)->generate(route('entry.create')) !!}
                 </div>
             </div>
         </div>
@@ -84,7 +87,7 @@
                             </div>
                             
                             <div class="row ml-2 mb-4 pb-1">
-                                <div class="col-md">
+                                <div class="col-md-5">
                                     <label class="text-xs mb-1 d-flex align-items-center" style="color: #a595c5">
                                         Tempat, Tanggal Lahir
                                     </label>
@@ -648,7 +651,7 @@
                             </div>
                             <div class="row mt-7 pb-1">
                                 <div class="col-md">
-                                    <button class="btn btn-primary btn-block">
+                                    <button class="btn btn-primary btn-block" type="submit" onclick="return confirm('Anda yakin?')">
                                         <i class="fas fa-paper-plane mr-2"></i>
                                         Tambahkan data
                                     </button>

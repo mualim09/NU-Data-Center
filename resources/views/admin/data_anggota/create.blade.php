@@ -1,5 +1,7 @@
 @extends('argon.main')
 
+@section('title') Tambah data anggota - Admin PW IPNU @endsection
+
 @section('navbar-item')
     <li class="nav-item">
         <a href="{{ route('admin.data_anggota.index') }}" class="nav-link text-sm rounded-circle" style="padding: 8px 12px">
