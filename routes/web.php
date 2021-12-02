@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\Data\AnggotaController;
 use App\Http\Controllers\Admin\Laporan\LaporanController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\EntryAnggotaController;
 use App\Http\Controllers\Resources\AnggotaResource;
 use App\Http\Controllers\Resources\Wilayah\CityResource;
 use App\Http\Controllers\Resources\Wilayah\DistrictResource;
@@ -34,13 +35,17 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::resource('resource/anggota', AnggotaResource::class)->parameter('anggota', 'anggota');
-    Route::resource('resource/city', CityResource::class)->parameter('city', 'city');
-    Route::resource('resource/district', DistrictResource::class)->parameter('district', 'district');
-    Route::resource('resource/subdistrict', SubDistrictResource::class)->parameter('subdistrict', 'subdistrict');
 
     Route::post('logout', [AuthController::class, 'destroy'])->name('auth.logout');
 });
 
+Route::resource('resource/city', CityResource::class)->parameter('city', 'city');
+Route::resource('resource/district', DistrictResource::class)->parameter('district', 'district');
+Route::resource('resource/subdistrict', SubDistrictResource::class)->parameter('subdistrict', 'subdistrict');
+
+Route::get('entry', [EntryAnggotaController::class, 'create'])->name('entry.create');
+Route::post('entry', [EntryAnggotaController::class, 'store'])->name('entry.store');
+Route::get('entry/{anggota}', [EntryAnggotaController::class, 'show'])->name('entry.show');
 
 Route::middleware('guest')->group(function () {
     Route::get('', [AuthController::class, 'index'])->name('home');
