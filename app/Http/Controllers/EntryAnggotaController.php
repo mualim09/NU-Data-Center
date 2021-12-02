@@ -140,6 +140,7 @@ class EntryAnggotaController extends Controller
     public function show(Anggota $anggota)
     {
         $data['anggota'] = $anggota;
+
         return view('entry_anggota.show', $data);
     }
 }
