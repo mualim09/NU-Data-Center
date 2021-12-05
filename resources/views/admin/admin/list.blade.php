@@ -32,8 +32,11 @@
             <div class="card">
                 <div class="card-header py-2 px-4">
                     <div class="row align-items-center justify-content-between">
-                        <div class="col-md-auto">
-                            <h3 class="card-title mb-0 mr-4">Daftar Anggota</h3>
+                        <div class="col-md-auto text-center">
+                            <i class="fas fa-user-cog mb-2" style="font-size: 32px"></i>
+                            <h3 class="card-title mb-0">
+                                Administrator
+                            </h3>
                         </div>
                         <div class="col-md">
                             <div class="row align-items-center">
@@ -46,7 +49,7 @@
                                                     <i class="fas fa-search"></i>
                                                 </span>
                                             </div>
-                                            <input type="text" class="form-control form-control-sm filter-nama" placeholder="Cari nama disini...">
+                                            <input type="text" class="form-control form-control-sm filter-pencarian" placeholder="Cari nama disini...">
                                         </div>
                                     </div>
                                 </div>
@@ -54,11 +57,11 @@
                                     <div class="form-group mb-0">
                                         <label>Cari Berdasarkan</label><br/>
                                         <div class="custom-control custom-control-inline custom-radio">
-                                            <input type="radio" class="custom-control-input" name="cari_berdasarkan" value="username" id="cari-nama_lengkap" checked>
+                                            <input type="radio" class="custom-control-input filter-berdasarkan" name="cari_berdasarkan" value="username" id="cari-nama_lengkap" checked>
                                             <label for="cari-nama_lengkap" class="custom-control-label text-capitalize font-weight-normal" style="font-size: 10px; line-height: 24px;">Nama lengkap</label>
                                         </div>
                                         <div class="custom-control custom-control-inline custom-radio">
-                                            <input type="radio" class="custom-control-input" name="cari_berdasarkan" value="username" id="cari-username">
+                                            <input type="radio" class="custom-control-input filter-berdasarkan" name="cari_berdasarkan" value="username" id="cari-username">
                                             <label for="cari-username" class="custom-control-label text-capitalize font-weight-normal" style="font-size: 10px; line-height: 24px;">Username</label>
                                         </div>
                                     </div>
@@ -110,10 +113,10 @@
                                         <div class="input-group input-group-sm input-group-merge">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">
-                                                    <i class="fas fa-map-marked-alt"></i>
+                                                    <i class="fas fa-map-marked-alt icon-kecamatan"></i>
                                                 </span>
                                             </div>
-                                            <select class="form-control filter-kecamatan">
+                                            <select class="form-control filter-kecamatan" disabled>
                                                 <option value="">- Pilih Kecamatan -</option>
                                             </select>
                                         </div>
@@ -125,10 +128,10 @@
                                         <div class="input-group input-group-sm input-group-merge">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">
-                                                    <i class="fas fa-map-marked-alt"></i>
+                                                    <i class="fas fa-map-marked-alt icon-kelurahan"></i>
                                                 </span>
                                             </div>
-                                            <select class="form-control filter-kelurahan">
+                                            <select class="form-control filter-kelurahan" disabled>
                                                 <option value="">- Pilih Kelurahan -</option>
                                             </select>
                                         </div>
@@ -228,34 +231,138 @@
             })
         }
 
-        @if (session()->has('anggota_nama'))
-            $(".filter-nama").val(`{{ session('anggota_nama') }}`)
-            dataParams.nama = '{{ session('anggota_nama') }}'
-            refreshData()
-            $(".filter-nama").focus()
-        @else
-            refreshData()
-        @endif
-
-        $(".filter-pencarian").on('input', function(e) {
+        $(".filter-pencarian").change(function (e) {
             value = $(this).val()
             if (value != '')
-                dataParams.nama = value
-            else 
-                delete dataParams.nama
+                dataParams.pencarian = value
+            else
+                delete dataParams.pencarian
             refreshData()
         })
-        $(".filter-limit").change(function(e) {
+        $(".filter-berdasarkan").change(function (e) {
             value = $(this).val()
             if (value != '')
-                if (value > 0)
-                    dataParams.limit = value
-                else
-                    $(this).value(50)
-            else 
+                dataParams.berdasarkan = value
+            else
+                delete dataParams.berdasarkan
+            refreshData()
+        })
+        $(".filter-limit").change(function (e) {
+            value = $(this).val()
+            if (value != '')
+                dataParams.limit = value
+            else
                 delete dataParams.limit
             refreshData()
         })
-    });
+        $(".filter-kabupaten").change(function (e) {
+            value = $(this).val()
+            id = $(this).find('option:selected').data('id')
+            if (value != '') {
+                dataParams.kabupaten = value
+                getKecamatan(id)
+            }
+            else {
+                delete dataParams.kabupaten
+                getKecamatan(-1)
+            }
+            refreshData()
+        })
+        $(".filter-kecamatan").change(function (e) {
+            value = $(this).val()
+            id = $(this).find('option:selected').data('id')
+            if (value != '') {
+                dataParams.kecamatan = value
+                getKelurahan(id)
+            }
+            else {
+                delete dataParams.kecamatan
+                getKelurahan(-1)
+            }
+            refreshData()
+        })
+        $(".filter-kelurahan").change(function (e) {
+            value = $(this).val()
+            if (value != '')
+                dataParams.kelurahan = value
+            else
+                delete dataParams.kelurahan
+            refreshData()
+        })
+
+        function getKecamatan(kabupatenId, callback) {
+            getKelurahan(-1)
+            if (kabupatenId > 0) {
+                $(".icon-kecamatan").removeClass('fa-map-marked-alt')
+                $(".icon-kecamatan").addClass('fa-spin fa-sync')
+                $(".filter-kecamatan").removeAttr('disabled');
+                $.ajax({
+                    type: "GET",
+                    url: "{{ route('district.index') }}",
+                    data: {
+                        city_id: kabupatenId,
+                        view_json: true,
+                    },
+                    dataType: "json"
+                })
+                .done(function (response) {
+                    $(".filter-kecamatan").html("<option value=''>- Piilh kecamatan -</option>")
+                    response.data.data.forEach((item) => {
+                        option = document.createElement('option')
+                        option.value = item.dis_name
+                        option.setAttribute('data-id', item.dis_id)
+                        option.innerHTML = item.dis_name.toLowerCase().replace(/\b[a-z]/g, letter => letter.toUpperCase())
+                        $(".filter-kecamatan").append(option)
+                    })
+                    callback = 0 || callback;
+                    if (callback) callback();
+                })
+                .always(function () {
+                    $(".icon-kecamatan").removeClass('fa-spin fa-sync')
+                    $(".icon-kecamatan").addClass('fa-map-marked-alt')
+                })
+            } 
+            else {
+                $(".filter-kecamatan").html("<option value=''>- Piilh kecamatan -</option>")
+                $(".filter-kecamatan").attr('disabled', 'disabled');
+            }
+        }
+        function getKelurahan(kecamatanId, callback) {
+            if (kecamatanId > 0) {
+                $(".icon-kelurahan").removeClass('fa-map-marked-alt')
+                $(".icon-kelurahan").addClass('fa-spin fa-sync')
+                $(".filter-kelurahan").removeAttr('disabled');
+                $.ajax({
+                    type: "GET",
+                    url: "{{ route('subdistrict.index') }}",
+                    data: {
+                        dis_id: kecamatanId,
+                        view_json: true,
+                    },
+                    dataType: "json"
+                })
+                .done(function (response) {
+                    $(".filter-kelurahan").html("<option value=''>- Pilih kelurahan -</option>")
+                    response.data.data.forEach((item) => {
+                        option = document.createElement('option')
+                        option.value = item.subdis_name
+                        option.setAttribute('data-id', item.subdis_id)
+                        option.innerHTML = item.subdis_name.toLowerCase().replace(/\b[a-z]/g, letter => letter.toUpperCase())
+                        $(".filter-kelurahan").append(option)
+                    })
+                    callback = 0 || callback;
+                    if (callback) callback();
+                })
+                .always(function () {
+                    $(".icon-kelurahan").removeClass('fa-spin fa-sync')
+                    $(".icon-kelurahan").addClass('fa-map-marked-alt')
+                })
+            } 
+            else {
+                $(".filter-kelurahan").html("<option value=''>- Piilh kelurahan -</option>")
+                $(".filter-kelurahan").attr('disabled', 'disabled');
+            }
+        }
+    })
 </script>
 @endsection
