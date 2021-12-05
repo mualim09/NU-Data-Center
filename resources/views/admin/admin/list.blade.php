@@ -57,7 +57,7 @@
                                     <div class="form-group mb-0">
                                         <label>Cari Berdasarkan</label><br/>
                                         <div class="custom-control custom-control-inline custom-radio">
-                                            <input type="radio" class="custom-control-input filter-berdasarkan" name="cari_berdasarkan" value="username" id="cari-nama_lengkap" checked>
+                                            <input type="radio" class="custom-control-input filter-berdasarkan" name="cari_berdasarkan" value="nama_lengkap" id="cari-nama_lengkap" checked>
                                             <label for="cari-nama_lengkap" class="custom-control-label text-capitalize font-weight-normal" style="font-size: 10px; line-height: 24px;">Nama lengkap</label>
                                         </div>
                                         <div class="custom-control custom-control-inline custom-radio">
@@ -201,6 +201,7 @@
         const dataParams = {
             view_content: 'admin.admin.ajax.table',
             view_pagination: 'admin.admin.ajax.pagination',
+            berdasarkan: 'nama_lengkap',
             limit: 50
         }
         function refreshData(link) {
@@ -231,7 +232,7 @@
             })
         }
 
-        $(".filter-pencarian").change(function (e) {
+        $(".filter-pencarian").on('input', function (e) {
             value = $(this).val()
             if (value != '')
                 dataParams.pencarian = value
@@ -241,10 +242,16 @@
         })
         $(".filter-berdasarkan").change(function (e) {
             value = $(this).val()
-            if (value != '')
+            if (value != '') {
                 dataParams.berdasarkan = value
-            else
+                if (value == 'nama_lengkap')
+                    $(".filter-pencarian").attr('placeholder', 'Cari nama disini...');
+                else
+                    $(".filter-pencarian").attr('placeholder', 'Tuliskan username disini...');
+            }
+            else {
                 delete dataParams.berdasarkan
+            }
             refreshData()
         })
         $(".filter-limit").change(function (e) {
