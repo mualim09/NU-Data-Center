@@ -63,7 +63,7 @@
                     <!-- Nav items -->
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link {{ (request()->routeIs('admin.data_anggota*')) ? 'active' : '' }}" href="{{ route('admin.data_anggota.index') }}">
+                            <a class="nav-link {{ (request()->routeIs('admin.data_anggota*') || request()->routeIs('admin.dashboard')) ? 'active' : '' }}" href="{{ route('admin.data_anggota.index') }}">
                                 <i class="fas fa-users text-primary"></i>
                                 <span class="nav-link-text">Data Anggota</span>
                             </a>
@@ -72,6 +72,12 @@
                             <a class="nav-link @if(request()->routeIs('admin.laporan*')) active @endif" href="{{ route('admin.laporan') }}">
                                 <i class="fas fa-clipboard text-primary"></i>
                                 <span class="nav-link-text">Laporan</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ (request()->routeIs('admin.admin*')) ? 'active' : '' }}" href="{{ route('admin.admin.index') }}">
+                                <i class="fas fa-user-cog text-primary"></i>
+                                <span class="nav-link-text">Administrator</span>
                             </a>
                         </li>
                     </ul>

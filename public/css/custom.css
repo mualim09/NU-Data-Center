@@ -132,6 +132,13 @@
 	color: black;
 }
 
+.custom-control-label::before {
+	left: -1.35rem !important;
+}
+.custom-control-inline {
+	margin-right: 0 !important;
+}
+
 .triangle {
 	position: absolute;
     left: -29px;

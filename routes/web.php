@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\Admin\AdminController;
 use App\Http\Controllers\Admin\Data\AnggotaController;
 use App\Http\Controllers\Admin\Laporan\LaporanController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\EntryAnggotaController;
+use App\Http\Controllers\Resources\AdminResource;
 use App\Http\Controllers\Resources\AnggotaResource;
 use App\Http\Controllers\Resources\Wilayah\CityResource;
 use App\Http\Controllers\Resources\Wilayah\DistrictResource;
@@ -25,9 +27,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function () {
     Route::prefix('admin')->name('admin.')->group(function () {
-        Route::get('/', [AnggotaController::class, 'index']);
+        Route::get('/', [AnggotaController::class, 'index'])->name('dashboard');
         Route::get('data_anggota/list', [AnggotaController::class, 'list'])->name('data_anggota.list');
         Route::resource('data_anggota', AnggotaController::class)->parameter('data_anggota', 'anggota');
+
+        Route::resource('admin', AdminController::class)->parameter('admin', 'admin');
 
         Route::get('laporan/', [LaporanController::class, 'index'])->name('laporan');
         Route::get('laporan/anggota', [LaporanController::class, 'index'])->name('laporan.anggota');
@@ -35,7 +39,7 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::resource('resource/anggota', AnggotaResource::class)->parameter('anggota', 'anggota');
-
+    Route::resource('resource/admin', AdminResource::class)->parameter('admin', 'admin');
     Route::post('logout', [AuthController::class, 'destroy'])->name('auth.logout');
 });
 
