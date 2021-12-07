@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Resources;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreAdminRequest;
+use App\Http\Requests\StoreAnggotaRequest;
 use App\Models\Admin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AdminResource extends Controller
 {
@@ -59,9 +63,32 @@ class AdminResource extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreAdminRequest $request)
     {
-        //
+        $pathAvatar = 'images/img-unavailable.png';
+        if ($request->hasFile('avatar')) {
+            $pathAvatar = 'storage/' . $request->file('avatar')->store('admin/avatar');
+        }
+        $data = Admin::create([
+            'username' => $request->username,
+            'password' => Hash::make($request->password),
+            'nama_lengkap' => $request->nama_lengkap,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'avatar' => $pathAvatar,
+            'tempat_lahir' => $request->tempat_lahir,
+            'tanggal_lahir' => $request->tanggal_lahir,
+            'alamat' => $request->alamat,
+            'kabupaten' => $request->kabupaten,
+            'kecamatan' => $request->kecamatan,
+            'kelurahan' => $request->kelurahan,
+            'nomor_hp' => $request->nomor_hp,
+            'nomor_ktp' => $request->nomor_ktp,
+            'admin_username' => Auth::user()->username,
+        ]);
+        return response()->json([
+            'status' => 'success',
+            'data' => $data
+        ]);
     }
 
     /**

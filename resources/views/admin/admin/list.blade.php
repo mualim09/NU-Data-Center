@@ -81,7 +81,7 @@
                                 </div>
                                 <div class="col-md-auto">
                                     <div class="form-group mb-0 text-center text-md-left mt-2 mt-md-0">
-                                        <a href="{{ route('admin.data_anggota.create') }}" class="btn btn-success rounded-circle btn-sm" data-toggle='tooltip' title="Tambah data anggota" data-placement="left">
+                                        <a href="#" class="btn btn-success rounded-circle btn-sm btn-create-admin" data-toggle='tooltip' title="Tambah administrator" data-placement="left">
                                             <i class="fas fa-plus-circle"></i>
                                         </a>
                                         <span class="d-inline-block d-md-none text-uppercase font-weight-bolder text-xs">Tambah data Anggota</span>
@@ -113,7 +113,7 @@
                                         <div class="input-group input-group-sm input-group-merge">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">
-                                                    <i class="fas fa-map-marked-alt icon-kecamatan"></i>
+                                                    <i class="fas fa-map-marked-alt icon-kelurahan"></i>
                                                 </span>
                                             </div>
                                             <select class="form-control filter-kecamatan" disabled>
@@ -169,6 +169,237 @@
 
 
 @section('js_scripts')
+
+<div class="modal fade" id="modal-create-admin">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header bg-gradient-default">
+                <h4 class="mb-0 text-white">Tambah akun administrator</h4>
+                <button class="close text-white text-xs" data-dismiss="modal" type="button">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group mb-2">
+                                        <label for="create-admin-nama_lengkap" class="text-xs mb-1 text-default font-weight-bold">Nama Lengkap</label>
+                                        <div class="input-group input-group-merge">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-signature"></i></span>
+                                            </div>
+                                            <input type="text" class="form-control" name="nama_lengkap" id="create-admin-nama_lengkap" placeholder="Tuliskan nama lengkap..." required>
+                                            @csrf
+                                        </div>
+                                        <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-nama_lengkap" style="font-size: 8px; display: none">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group mb-2">
+                                        <label for="create-admin-jenis_kelamin" class="text-xs mb-1 text-default font-weight-bold">Jenis Kelamin</label>
+                                        <br/>
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" id="create-admin-jenis_kelamin-L" name="jenis_kelamin" value="L" class="custom-control-input" checked>
+                                            <label for="create-admin-jenis_kelamin-L" class="custom-control-label font-weight-bold text-default">
+                                                <i class="fas fa-mars mr-1" style="width: 8px"></i>
+                                                Laki-laki
+                                            </label>
+                                        </div>
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" id="create-admin-jenis_kelamin-P" name="jenis_kelamin" value="P" class="custom-control-input">
+                                            <label for="create-admin-jenis_kelamin-P" class="custom-control-label font-weight-bold" style="color: #F94BDC">
+                                                <i class="fas fa-venus mr-1" style="width: 8px"></i>
+                                                Perempuan
+                                            </label>
+                                        </div>
+                                        <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-jenis_kelamin" style="font-size: 8px; display: none">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 pr-md-1">
+                                    <div class="form-group mb-2">
+                                        <label for="create-admin-username" class="text-xs mb-1 text-default font-weight-bold">Username</label>
+                                        <div class="input-group input-group-merge">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-user-cog"></i></span>
+                                            </div>
+                                            <input type="text" class="form-control" name="username" id="create-admin-username" placeholder="Tuliskan username..." required>
+                                        </div>
+                                        <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-username" style="font-size: 8px; display: none">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 pl-md-1">
+                                    <div class="form-group mb-2">
+                                        <label for="create-admin-tempat_lahir" class="text-xs mb-1 text-default font-weight-bold">Tempat, Tanggal Lahir</label>
+                                        <div class="input-group input-group-merge">
+                                            <input type="text" class="form-control" name="tempat_lahir" id="create-admin-tempat_lahir" placeholder="Tempat lahir..." required>
+                                            <input type="date" class="form-control" name="tanggal_lahir" required>
+                                        </div>
+                                    </div>
+                                    <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-tempat_lahir" style="font-size: 8px; display: none">
+                                    </div>
+                                    <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-tanggal_lahir" style="font-size: 8px; display: none">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 pr-md-1">
+                                    <div class="form-group mb-2">
+                                        <label for="create-admin-password" class="text-xs mb-1 text-default font-weight-bold">Password</label>
+                                        <div class="input-group input-group-merge">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                            </div>
+                                            <input type="password" class="form-control" name="password" id="create-admin-password" placeholder="Password..." required>
+                                        </div>
+                                        <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-password" style="font-size: 8px; display: none">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 pl-md-1">
+                                    <div class="form-group mb-2">
+                                        <label for="create-admin-password_confirm" class="text-xs mb-1 text-default font-weight-bold">Konfirmasi Password</label>
+                                        <div class="input-group input-group-merge">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                            </div>
+                                            <input type="password" class="form-control" name="password_confirmation" id="create-admin-password_confirm" placeholder="Tuliskan Password lagi..." required>
+                                        </div>
+                                        <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-password_confirmation" style="font-size: 8px; display: none">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 pr-md-1">
+                                    <div class="form-group mb-2">
+                                        <label for="create-admin-nomor_hp" class="text-xs mb-1 text-default font-weight-bold">Nomor HP</label>
+                                        <div class="input-group input-group-merge">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-phone-alt"></i></span>
+                                            </div>
+                                            <input type="text" class="form-control" name="nomor_hp" id="create-admin-nomor_hp" placeholder="Nomor HP..." required>
+                                        </div>
+                                        <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-nomor_hp" style="font-size: 8px; display: none">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 pl-md-1">
+                                    <div class="form-group mb-2">
+                                        <label for="create-admin-nomor_ktp" class="text-xs mb-1 text-default font-weight-bold">Nomor KTP</label>
+                                        <div class="input-group input-group-merge">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+                                            </div>
+                                            <input type="text" class="form-control" name="nomor_ktp" id="create-admin-nomor_ktp" placeholder="Nomor KTP..." required>
+                                        </div>
+                                        <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-nomor_ktp" style="font-size: 8px; display: none">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md pr-md-1">
+                                    <div class="form-group mb-2">
+                                        <label for="create-admin-kabupaten" class="text-xs mb-1 text-default font-weight-bold">Kabupaten/kota</label>
+                                        <div class="input-group input-group-merge">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-map-marked-alt icon-kabupaten"></i></span>
+                                            </div>
+                                            <select name="kabupaten" class="form-control" id="create-admin-kabupaten" required>
+                                                <option value="">- Pilih kabupaten -</option>
+                                                @foreach ($dataCity as $city)
+                                                    <option value="{{ $city->city_name }}" data-id="{{ $city->city_id }}">{{ ucwords(strtolower($city->city_name)) }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-kabupaten" style="font-size: 8px; display: none">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md pl-md-1">
+                                    <div class="form-group mb-2">
+                                        <label for="create-admin-kecamatan" class="text-xs mb-1 text-default font-weight-bold">Kecamatan</label>
+                                        <div class="input-group input-group-merge">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-map-marked-alt icon-kecamatan"></i></span>
+                                            </div>
+                                            <select name="kecamatan" class="form-control" id="create-admin-kecamatan" disabled required>
+                                                <option value="">- Pilih kecamatan -</option>
+                                            </select>
+                                        </div>
+                                        <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-kecamatan" style="font-size: 8px; display: none">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md pl-md-1">
+                                    <div class="form-group mb-2">
+                                        <label for="create-admin-kelurahan" class="text-xs mb-1 text-default font-weight-bold">Kelurahan</label>
+                                        <div class="input-group input-group-merge">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-map-marked-alt icon-kelurahan"></i></span>
+                                            </div>
+                                            <select name="kelurahan" class="form-control" id="create-admin-kelurahan" disabled required>
+                                                <option value="">- Pilih kelurahan -</option>
+                                            </select>
+                                        </div>
+                                        <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-kelurahan" style="font-size: 8px; display: none">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group mb-2">
+                                        <label for="create-admin-alamat" class="text-xs font-weight-bold text-default mb-1">Alamat</label>
+                                        <textarea name="alamat" id="create-admin-alamat" class="form-control" name="alamat"></textarea>
+                                        <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-alamat" style="font-size: 8px; display: none">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="row">
+                                <div class="col text-center mb-2">
+                                    <img class="img-thumbnail w-100 preview-avatar" src="{{ asset('images/img-unavailable.png') }}" alt="preview">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="create-admin-avatar" class="text-xs mb-1 text-dark font-weight-bold" for="create-admin-avatar">Upload Avatar</label>
+                                        <input type="file" id="create-admin-avatar" name="avatar" class="form-control form-control-sm" style="padding-top: 1px">
+                                    </div>
+                                    <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-avatar" style="font-size: 8px; display: none">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col">
+                            <button type="submit" class="btn btn-default btn-block">
+                                <i class="fas fa-paper-plane mr-2"></i>
+                                Tambahkan
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 <script>
     $(document).ready(function () {
 
@@ -297,12 +528,16 @@
             refreshData()
         })
 
-        function getKecamatan(kabupatenId, callback) {
-            getKelurahan(-1)
+        function getKecamatan(kabupatenId, ctxInput, ctxIcon, ctxKelurahanInput, callback) {
+            getKelurahan(-1, ctxKelurahanInput)
+            ctxInput = 0 || ctxInput
+            if (!ctxInput) ctxInput = $(".filter-kecamatan")
+            ctxIcon = 0 || ctxIcon
+            if (!ctxIcon) ctxIcon = $(".icon-kecamatan")
             if (kabupatenId > 0) {
-                $(".icon-kecamatan").removeClass('fa-map-marked-alt')
-                $(".icon-kecamatan").addClass('fa-spin fa-sync')
-                $(".filter-kecamatan").removeAttr('disabled');
+                ctxIcon.removeClass('fa-map-marked-alt')
+                ctxIcon.addClass('fa-spin fa-sync')
+                ctxInput.attr('disabled', 'disabled');
                 $.ajax({
                     type: "GET",
                     url: "{{ route('district.index') }}",
@@ -313,32 +548,37 @@
                     dataType: "json"
                 })
                 .done(function (response) {
-                    $(".filter-kecamatan").html("<option value=''>- Piilh kecamatan -</option>")
+                    ctxInput.html("<option value=''>- Piilh kecamatan -</option>")
                     response.data.data.forEach((item) => {
                         option = document.createElement('option')
                         option.value = item.dis_name
                         option.setAttribute('data-id', item.dis_id)
                         option.innerHTML = item.dis_name.toLowerCase().replace(/\b[a-z]/g, letter => letter.toUpperCase())
-                        $(".filter-kecamatan").append(option)
+                        ctxInput.append(option)
                     })
                     callback = 0 || callback;
                     if (callback) callback();
                 })
                 .always(function () {
-                    $(".icon-kecamatan").removeClass('fa-spin fa-sync')
-                    $(".icon-kecamatan").addClass('fa-map-marked-alt')
+                    ctxInput.removeAttr('disabled');
+                    ctxIcon.removeClass('fa-spin fa-sync')
+                    ctxIcon.addClass('fa-map-marked-alt')
                 })
             } 
             else {
-                $(".filter-kecamatan").html("<option value=''>- Piilh kecamatan -</option>")
-                $(".filter-kecamatan").attr('disabled', 'disabled');
+                ctxInput.html("<option value=''>- Pilih kecamatan -</option>")
+                ctxInput.attr('disabled', 'disabled');
             }
         }
-        function getKelurahan(kecamatanId, callback) {
+        function getKelurahan(kecamatanId, ctxInput, ctxIcon, callback) {
+            ctxInput = 0 || ctxInput
+            if (!ctxInput) ctxInput = $(".filter-kelurahan")
+            ctxIcon = 0 || ctxIcon
+            if (!ctxIcon) ctxIcon = $(".icon-kelurahan")
             if (kecamatanId > 0) {
-                $(".icon-kelurahan").removeClass('fa-map-marked-alt')
-                $(".icon-kelurahan").addClass('fa-spin fa-sync')
-                $(".filter-kelurahan").removeAttr('disabled');
+                ctxIcon.removeClass('fa-map-marked-alt')
+                ctxIcon.addClass('fa-spin fa-sync')
+                ctxInput.attr('disabled', 'disabled');
                 $.ajax({
                     type: "GET",
                     url: "{{ route('subdistrict.index') }}",
@@ -349,27 +589,91 @@
                     dataType: "json"
                 })
                 .done(function (response) {
-                    $(".filter-kelurahan").html("<option value=''>- Pilih kelurahan -</option>")
+                    ctxInput.html("<option value=''>- Pilih kelurahan -</option>")
                     response.data.data.forEach((item) => {
                         option = document.createElement('option')
                         option.value = item.subdis_name
                         option.setAttribute('data-id', item.subdis_id)
                         option.innerHTML = item.subdis_name.toLowerCase().replace(/\b[a-z]/g, letter => letter.toUpperCase())
-                        $(".filter-kelurahan").append(option)
+                        ctxInput.append(option)
                     })
                     callback = 0 || callback;
                     if (callback) callback();
                 })
                 .always(function () {
-                    $(".icon-kelurahan").removeClass('fa-spin fa-sync')
-                    $(".icon-kelurahan").addClass('fa-map-marked-alt')
+                    ctxInput.removeAttr('disabled');
+                    ctxIcon.removeClass('fa-spin fa-sync')
+                    ctxIcon.addClass('fa-map-marked-alt')
                 })
             } 
             else {
-                $(".filter-kelurahan").html("<option value=''>- Piilh kelurahan -</option>")
-                $(".filter-kelurahan").attr('disabled', 'disabled');
+                ctxInput.html("<option value=''>- Piilh kelurahan -</option>")
+                ctxInput.attr('disabled', 'disabled');
             }
         }
+        let modalCreateAdmin = $("#modal-create-admin")
+        $(".btn-create-admin").click(function (e) {
+            e.preventDefault()
+            modalCreateAdmin.modal('show')
+        })
+        modalCreateAdmin.on('shown.bs.modal', function(e) {
+            modalCreateAdmin.find("[name='kabupaten']").change(function (e) {
+                value = $(this).val()
+                id = $(this).find('option:selected').data('id')
+                if (value != '')
+                    getKecamatan(id, modalCreateAdmin.find("[name='kecamatan']"), modalCreateAdmin.find(".icon-kecamatan"), modalCreateAdmin.find("[name='kelurahan']"))
+                else
+                    getKecamatan(-1, modalCreateAdmin.find("[name='kecamatan']"), modalCreateAdmin.find(".icon-kecamatan"), modalCreateAdmin.find("[name='kelurahan']"))
+            })
+            modalCreateAdmin.find("[name='kecamatan']").change(function (e) {
+                value = $(this).val()
+                id = $(this).find('option:selected').data('id')
+                if (value != '')
+                    getKelurahan(id, modalCreateAdmin.find("[name='kelurahan']"), modalCreateAdmin.find(".icon-kelurahan"))
+                else
+                    getKelurahan(-1, modalCreateAdmin.find("[name='kelurahan']"), modalCreateAdmin.find(".icon-kelurahan"))
+            })
+            modalCreateAdmin.find("form").submit(function(e) {
+                e.preventDefault()
+                formData = new FormData(this)
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('admin.store') }}",
+                    data: formData,
+                    dataType: "json",
+                    contentType: false,
+                    processData: false,
+                    cache: false
+                })
+                .done(function (response) {
+                    $(".filter-berdasarkan[value='username']").prop('checked', true)
+                    $(".filter-pencarian").val(response.data.username)
+                    dataParams.pencarian = response.data.username
+                    dataParams.berdasarkan = 'username'
+                    refreshData()
+                    modalCreateAdmin.find('.preview-avatar').attr('src', "{{ asset('images/img-unavailable.png') }}")
+                    modalCreateAdmin.find('form')[0].reset()
+                    modalCreateAdmin.modal('hide')
+                    $(".filter-pencarian").focus()
+                })
+                .fail(function (response) {
+                    Object.entries(response.responseJSON.errors).forEach((error) => {
+                        const [field, message] = error
+                        modalCreateAdmin.find('.error-' + field).html(message).show()
+                        modalCreateAdmin.animate({
+                            scrollTop: modalCreateAdmin.find('.error-' + field).offset().top * -1
+                        }, 1000)
+                    })
+                })
+            })
+            modalCreateAdmin.find('#create-admin-avatar').change(function () {
+                const fileAvatar = new FileReader()
+                fileAvatar.readAsDataURL(this.files[0])
+                fileAvatar.onload = function(e) {
+                    modalCreateAdmin.find('.preview-avatar').attr('src', e.target.result)
+                }
+            })
+        })
     })
 </script>
 @endsection
