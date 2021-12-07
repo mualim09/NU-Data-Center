@@ -163,10 +163,10 @@ class AdminResource extends Controller
             $validatedData['avatar'] = $pathFotoDiri;
         }
 
-        $data = $admin->update($validatedData);
+        $admin->update($validatedData);
         return response()->json([
             'status' => 'success',
-            'data' => $data
+            'data' => $admin
         ]);
     }
 

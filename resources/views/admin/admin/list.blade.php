@@ -186,6 +186,12 @@
                 </button>
             </div>
             <div class="modal-body">
+                <div class="modal-loading position-absolute rounded justify-content-center align-items-center top-0 bottom-0 left-0 right-0" style="display: none; z-index: 1; background: rgba(0, 0, 0, 0.7);">
+                    <div class="text-center text-white">
+                        <i class="fas fa-spin fa-sync-alt mb-3" style="font-size: 40px"></i>
+                        <h4 class="text-white" style="font-size: 16px; text-transform: uppercase">Loading...</h4>
+                    </div>
+                </div>
                 <form>
                     <div class="row">
                         <div class="col-md-8">
@@ -199,7 +205,7 @@
                                             </div>
                                             <input type="text" class="form-control" name="nama_lengkap" id="create-admin-nama_lengkap" placeholder="Tuliskan nama lengkap..." required>
                                         </div>
-                                        <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-nama_lengkap" style="font-size: 8px; display: none">
+                                        <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-message error-nama_lengkap" style="font-size: 8px; display: none">
                                         </div>
                                     </div>
                                 </div>
@@ -221,7 +227,7 @@
                                                 Perempuan
                                             </label>
                                         </div>
-                                        <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-jenis_kelamin" style="font-size: 8px; display: none">
+                                        <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-message error-jenis_kelamin" style="font-size: 8px; display: none">
                                         </div>
                                     </div>
                                 </div>
@@ -236,7 +242,7 @@
                                             </div>
                                             <input type="text" class="form-control" name="username" id="create-admin-username" placeholder="Tuliskan username..." required>
                                         </div>
-                                        <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-username" style="font-size: 8px; display: none">
+                                        <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-message error-username" style="font-size: 8px; display: none">
                                         </div>
                                     </div>
                                 </div>
@@ -248,9 +254,9 @@
                                             <input type="date" class="form-control" name="tanggal_lahir" required>
                                         </div>
                                     </div>
-                                    <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-tempat_lahir" style="font-size: 8px; display: none">
+                                    <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-message error-tempat_lahir" style="font-size: 8px; display: none">
                                     </div>
-                                    <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-tanggal_lahir" style="font-size: 8px; display: none">
+                                    <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-message error-tanggal_lahir" style="font-size: 8px; display: none">
                                     </div>
                                 </div>
                             </div>
@@ -264,7 +270,7 @@
                                             </div>
                                             <input type="password" class="form-control" name="password" id="create-admin-password" placeholder="Password..." required>
                                         </div>
-                                        <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-password" style="font-size: 8px; display: none">
+                                        <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-message error-password" style="font-size: 8px; display: none">
                                         </div>
                                     </div>
                                 </div>
@@ -277,7 +283,7 @@
                                             </div>
                                             <input type="password" class="form-control" name="password_confirmation" id="create-admin-password_confirm" placeholder="Tuliskan Password lagi..." required>
                                         </div>
-                                        <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-password_confirmation" style="font-size: 8px; display: none">
+                                        <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-message error-password_confirmation" style="font-size: 8px; display: none">
                                         </div>
                                     </div>
                                 </div>
@@ -292,7 +298,7 @@
                                             </div>
                                             <input type="text" class="form-control" name="nomor_hp" id="create-admin-nomor_hp" placeholder="Nomor HP..." required>
                                         </div>
-                                        <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-nomor_hp" style="font-size: 8px; display: none">
+                                        <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-message error-nomor_hp" style="font-size: 8px; display: none">
                                         </div>
                                     </div>
                                 </div>
@@ -305,7 +311,7 @@
                                             </div>
                                             <input type="text" class="form-control" name="nomor_ktp" id="create-admin-nomor_ktp" placeholder="Nomor KTP..." required>
                                         </div>
-                                        <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-nomor_ktp" style="font-size: 8px; display: none">
+                                        <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-message error-nomor_ktp" style="font-size: 8px; display: none">
                                         </div>
                                     </div>
                                 </div>
@@ -325,7 +331,7 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-kabupaten" style="font-size: 8px; display: none">
+                                        <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-message error-kabupaten" style="font-size: 8px; display: none">
                                         </div>
                                     </div>
                                 </div>
@@ -340,7 +346,7 @@
                                                 <option value="">- Pilih kecamatan -</option>
                                             </select>
                                         </div>
-                                        <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-kecamatan" style="font-size: 8px; display: none">
+                                        <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-message error-kecamatan" style="font-size: 8px; display: none">
                                         </div>
                                     </div>
                                 </div>
@@ -355,7 +361,7 @@
                                                 <option value="">- Pilih kelurahan -</option>
                                             </select>
                                         </div>
-                                        <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-kelurahan" style="font-size: 8px; display: none">
+                                        <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-message error-kelurahan" style="font-size: 8px; display: none">
                                         </div>
                                     </div>
                                 </div>
@@ -365,7 +371,7 @@
                                     <div class="form-group mb-2">
                                         <label for="create-admin-alamat" class="text-xs font-weight-bold text-default mb-1">Alamat</label>
                                         <textarea name="alamat" id="create-admin-alamat" class="form-control" name="alamat"></textarea>
-                                        <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-alamat" style="font-size: 8px; display: none">
+                                        <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-message error-alamat" style="font-size: 8px; display: none">
                                         </div>
                                     </div>
                                 </div>
@@ -383,7 +389,7 @@
                                         <label for="create-admin-avatar" class="text-xs mb-1 text-dark font-weight-bold" for="create-admin-avatar">Upload Avatar</label>
                                         <input type="file" id="create-admin-avatar" name="avatar" class="form-control form-control-sm" style="padding-top: 1px">
                                     </div>
-                                    <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-avatar" style="font-size: 8px; display: none">
+                                    <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-message error-avatar" style="font-size: 8px; display: none">
                                     </div>
                                 </div>
                             </div>
@@ -413,7 +419,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="position-absolute rounded justify-content-center align-items-center top-0 bottom-0 left-0 right-0" style="display: flex; z-index: 1; background: rgba(0, 0, 0, 0.7);">
+                <div class="modal-loading position-absolute rounded justify-content-center align-items-center top-0 bottom-0 left-0 right-0" style="display: flex; z-index: 1; background: rgba(0, 0, 0, 0.7);">
                     <div class="text-center text-white">
                         <i class="fas fa-spin fa-sync-alt mb-3" style="font-size: 40px"></i>
                         <h4 class="text-white" style="font-size: 16px; text-transform: uppercase">Loading...</h4>
@@ -720,7 +726,7 @@
                 modalEditAdmin.find("[name='id']").val(id)
                 modalEditAdmin.find("[name='url']").val(url)
                 modalEditAdmin.find("[name='action']").val(action)
-                modalEditAdmin.find('.modal-body > div').css('display', 'flex')
+                modalEditAdmin.find('.modal-loading').css('display', 'flex')
                 modalEditAdmin.modal('show')
             })
 
@@ -923,6 +929,7 @@
                     getKelurahan(-1, modalCreateAdmin.find("[name='kelurahan']"), modalCreateAdmin.find(".icon-kelurahan"))
             })
             modalCreateAdmin.find("form").submit(function(e) {
+                modalCreateAdmin.find('.modal-loading').css('display', 'flex')
                 e.preventDefault()
                 formData = new FormData(this)
                 $.ajax({
@@ -942,8 +949,15 @@
                     $(".filter-pencarian").val(response.data.username)
                     dataParams.pencarian = response.data.username
                     dataParams.berdasarkan = 'username'
+                    $(".filter-kabupaten").val('')
+                    $(".filter-kecamatan").val('')
+                    $(".filter-kelurahan").val('')
+                    delete dataParams.kabupaten
+                    delete dataParams.kecamatan
+                    delete dataParams.kelurahan
                     refreshData()
                     modalCreateAdmin.find('.preview-avatar').attr('src', "{{ asset('images/img-unavailable.png') }}")
+                    modalCreateAdmin.find('.error-message').hide()
                     modalCreateAdmin.find('form')[0].reset()
                     modalCreateAdmin.modal('hide')
                     $(".filter-pencarian").focus()
@@ -952,10 +966,10 @@
                     Object.entries(response.responseJSON.errors).forEach((error) => {
                         const [field, message] = error
                         modalCreateAdmin.find('.error-' + field).html(message).show()
-                        modalCreateAdmin.animate({
-                            scrollTop: modalCreateAdmin.find('.error-' + field).offset().top * -1
-                        }, 1000)
                     })
+                })
+                .always(function () {
+                    modalCreateAdmin.find('.modal-loading').hide()
                 })
             })
             modalCreateAdmin.find('#create-admin-avatar').change(function () {
@@ -978,7 +992,7 @@
                 dataType: "json",
             })
             .done(function (response) {
-                modalEditAdmin.find('.modal-body > div').hide()
+                modalEditAdmin.find('.modal-loading').hide()
                 modalEditAdmin.find("[name='nama_lengkap']").val(response.nama_lengkap)
                 modalEditAdmin.find(`[name='jenis_kelamin'][value='${response.jenis_kelamin}']`).prop('checked', true)
                 modalEditAdmin.find("[name='username']").val(response.username)
@@ -1035,7 +1049,7 @@
             })
             modalEditAdmin.find("form").unbind('submit').submit(function(e) {
                 e.preventDefault()
-                modalEditAdmin.find('.modal-body > div').show()
+                modalEditAdmin.find('.modal-loading').css('display', 'flex')
                 formData = new FormData(this)
                 url = modalEditAdmin.find("[name='action']").val()
                 $.ajax({
@@ -1051,11 +1065,17 @@
                     cache: false
                 })
                 .done(function (response) {
-                    modalEditAdmin.find('.modal-body > div').hide()
+                    modalEditAdmin.find('.modal-loading').hide()
                     $(".filter-berdasarkan[value='username']").prop('checked', true)
                     $(".filter-pencarian").val(response.data.username)
                     dataParams.pencarian = response.data.username
                     dataParams.berdasarkan = 'username'
+                    $(".filter-kabupaten").val('')
+                    $(".filter-kecamatan").val('')
+                    $(".filter-kelurahan").val('')
+                    delete dataParams.kabupaten
+                    delete dataParams.kecamatan
+                    delete dataParams.kelurahan
                     refreshData()
                     modalEditAdmin.find('.preview-avatar').attr('src', "{{ asset('images/img-unavailable.png') }}")
                     modalEditAdmin.find('.error-message').hide()
@@ -1067,9 +1087,6 @@
                     Object.entries(response.responseJSON.errors).forEach((error) => {
                         const [field, message] = error
                         modalEditAdmin.find('.error-' + field).html(message).show()
-                        modalEditAdmin.animate({
-                            scrollTop: modalEditAdmin.find('.error-' + field).offset().top * -1
-                        }, 1000)
                     })
                 })
             })
