@@ -787,6 +787,8 @@
             }
             else {
                 delete dataParams.kabupaten
+                delete dataParams.kecamatan
+                delete dataParams.kelurahan
                 getKecamatan(-1)
             }
             refreshData()
@@ -800,6 +802,7 @@
             }
             else {
                 delete dataParams.kecamatan
+                delete dataParams.kelurahan
                 getKelurahan(-1)
             }
             refreshData()
