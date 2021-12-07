@@ -723,6 +723,29 @@
                 modalEditAdmin.find('.modal-body > div').css('display', 'flex')
                 modalEditAdmin.modal('show')
             })
+
+            $(".btn-delete").click(function (e) {
+                e.preventDefault()
+                if (confirm('Data yang dihapus tidak dapat dikembalikan lagi. Anda yakin?')) {
+                    url = $(this).data('url')
+                    $.ajax({
+                        type: "POST",
+                        url: url,
+                        beforeSend: function(request) {
+                            request.setRequestHeader('X-CSRF-TOKEN', $('meta[name="csrf-token"]').attr('content'))
+                        },
+                        data: {
+                            _method: 'DELETE' 
+                        },
+                        dataType: "json",
+                    })
+                    .done(function (response) {
+                        refreshData()
+                    })
+                    .always(function () {
+                    })
+                }
+            })
         }
 
         $(".filter-pencarian").on('input', function (e) {

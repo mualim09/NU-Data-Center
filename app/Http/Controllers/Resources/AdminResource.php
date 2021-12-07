@@ -178,6 +178,14 @@ class AdminResource extends Controller
      */
     public function destroy(Admin $admin)
     {
-        //
+        if ($admin->avatar != 'images/user-default.png') {
+            if (file_exists(public_path() . '/' . $admin->avatar)) {
+                Storage::delete('admin/avatar/' . basename($admin->avatar));
+            }
+        }
+        $admin->delete();
+        return response()->json([
+            'status' => 'success'
+        ]);
     }
 }
