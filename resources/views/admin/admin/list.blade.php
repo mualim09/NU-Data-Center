@@ -1,6 +1,12 @@
 @extends('argon.main')
 
-@section('title') List data anggota - Admin PW IPNU @endsection
+@section('title') 
+    List data anggota - Admin PW IPNU 
+@endsection
+
+@section('head')
+    <meta name="csrf-token" content="{{ csrf_token() }}"/>
+@endsection
 
 @section('navbar-item')
     <li class="nav-item">
@@ -192,7 +198,6 @@
                                                 <span class="input-group-text"><i class="fas fa-signature"></i></span>
                                             </div>
                                             <input type="text" class="form-control" name="nama_lengkap" id="create-admin-nama_lengkap" placeholder="Tuliskan nama lengkap..." required>
-                                            @csrf
                                         </div>
                                         <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-nama_lengkap" style="font-size: 8px; display: none">
                                         </div>
@@ -398,7 +403,252 @@
     </div>
 </div>
 
-
+<div class="modal fade" id="modal-edit-admin">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header bg-gradient-default">
+                <h4 class="mb-0 text-white">Edit akun administrator</h4>
+                <button class="close text-white text-xs" data-dismiss="modal" type="button">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="position-absolute rounded justify-content-center align-items-center top-0 bottom-0 left-0 right-0" style="display: flex; z-index: 1; background: rgba(0, 0, 0, 0.7);">
+                    <div class="text-center text-white">
+                        <i class="fas fa-spin fa-sync-alt mb-3" style="font-size: 40px"></i>
+                        <h4 class="text-white" style="font-size: 16px; text-transform: uppercase">Loading...</h4>
+                    </div>
+                </div>
+                <form>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group mb-2">
+                                        <label for="edit-admin-nama_lengkap" class="text-xs mb-1 text-default font-weight-bold">Nama Lengkap</label>
+                                        <div class="input-group input-group-merge">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-signature"></i></span>
+                                            </div>
+                                            <input type="hidden" name="id">
+                                            <input type="hidden" name="url">
+                                            <input type="hidden" name="action">
+                                            @csrf
+                                            @method('PUT')
+                                            <input type="text" class="form-control" name="nama_lengkap" id="edit-admin-nama_lengkap" placeholder="Tuliskan nama lengkap..." required>
+                                        </div>
+                                        <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-message error-nama_lengkap" style="font-size: 8px; display: none">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group mb-2">
+                                        <label for="edit-admin-jenis_kelamin" class="text-xs mb-1 text-default font-weight-bold">Jenis Kelamin</label>
+                                        <br/>
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" id="edit-admin-jenis_kelamin-L" name="jenis_kelamin" value="L" class="custom-control-input" checked>
+                                            <label for="edit-admin-jenis_kelamin-L" class="custom-control-label font-weight-bold text-default">
+                                                <i class="fas fa-mars mr-1" style="width: 8px"></i>
+                                                Laki-laki
+                                            </label>
+                                        </div>
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" id="edit-admin-jenis_kelamin-P" name="jenis_kelamin" value="P" class="custom-control-input">
+                                            <label for="edit-admin-jenis_kelamin-P" class="custom-control-label font-weight-bold" style="color: #F94BDC">
+                                                <i class="fas fa-venus mr-1" style="width: 8px"></i>
+                                                Perempuan
+                                            </label>
+                                        </div>
+                                        <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-message error-jenis_kelamin" style="font-size: 8px; display: none">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 pr-md-1">
+                                    <div class="form-group mb-2">
+                                        <label for="edit-admin-username" class="text-xs mb-1 text-default font-weight-bold">Username</label>
+                                        <div class="input-group input-group-merge">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-user-cog"></i></span>
+                                            </div>
+                                            <input type="text" class="form-control" name="username" id="edit-admin-username" placeholder="Tuliskan username..." required>
+                                        </div>
+                                        <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-message error-username" style="font-size: 8px; display: none">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 pl-md-1">
+                                    <div class="form-group mb-2">
+                                        <label for="edit-admin-tempat_lahir" class="text-xs mb-1 text-default font-weight-bold">Tempat, Tanggal Lahir</label>
+                                        <div class="input-group input-group-merge">
+                                            <input type="text" class="form-control" name="tempat_lahir" id="edit-admin-tempat_lahir" placeholder="Tempat lahir..." required>
+                                            <input type="date" class="form-control" name="tanggal_lahir" required>
+                                        </div>
+                                    </div>
+                                    <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-message error-tempat_lahir" style="font-size: 8px; display: none">
+                                    </div>
+                                    <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-message error-tanggal_lahir" style="font-size: 8px; display: none">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 pr-md-1">
+                                    <div class="form-group mb-2">
+                                        <label for="edit-admin-password" class="text-xs mb-1 text-default font-weight-bold">Password</label>
+                                        <div class="input-group input-group-merge">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                            </div>
+                                            <input type="password" class="form-control" name="password" id="edit-admin-password" placeholder="Password...">
+                                        </div>
+                                        <div class="font-weight-bolder text-muted pl-1 pt-1 error-message error-password" style="font-size: 9px">
+                                            Abaikan jika tidak ingin merubah password
+                                        </div>
+                                        <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-message error-password" style="font-size: 8px; display: none">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 pl-md-1">
+                                    <div class="form-group mb-2">
+                                        <label for="edit-admin-password_confirm" class="text-xs mb-1 text-default font-weight-bold">Konfirmasi Password</label>
+                                        <div class="input-group input-group-merge">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                            </div>
+                                            <input type="password" class="form-control" name="password_confirmation" id="edit-admin-password_confirm" placeholder="Tuliskan Password lagi...">
+                                        </div>
+                                        <div class="font-weight-bolder text-muted pl-1 pt-1 error-message error-password" style="font-size: 8px">
+                                            Abaikan jika tidak ingin merubah password
+                                        </div>
+                                        <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-message error-password_confirmation" style="font-size: 8px; display: none">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 pr-md-1">
+                                    <div class="form-group mb-2">
+                                        <label for="edit-admin-nomor_hp" class="text-xs mb-1 text-default font-weight-bold">Nomor HP</label>
+                                        <div class="input-group input-group-merge">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-phone-alt"></i></span>
+                                            </div>
+                                            <input type="text" class="form-control" name="nomor_hp" id="edit-admin-nomor_hp" placeholder="Nomor HP..." required>
+                                        </div>
+                                        <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-message error-nomor_hp" style="font-size: 8px; display: none">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 pl-md-1">
+                                    <div class="form-group mb-2">
+                                        <label for="edit-admin-nomor_ktp" class="text-xs mb-1 text-default font-weight-bold">Nomor KTP</label>
+                                        <div class="input-group input-group-merge">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+                                            </div>
+                                            <input type="text" class="form-control" name="nomor_ktp" id="edit-admin-nomor_ktp" placeholder="Nomor KTP..." required>
+                                        </div>
+                                        <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-message error-nomor_ktp" style="font-size: 8px; display: none">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md pr-md-1">
+                                    <div class="form-group mb-2">
+                                        <label for="edit-admin-kabupaten" class="text-xs mb-1 text-default font-weight-bold">Kabupaten/kota</label>
+                                        <div class="input-group input-group-merge">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-map-marked-alt icon-kabupaten"></i></span>
+                                            </div>
+                                            <select name="kabupaten" class="form-control" id="edit-admin-kabupaten" required>
+                                                <option value="">- Pilih kabupaten -</option>
+                                                @foreach ($dataCity as $city)
+                                                    <option value="{{ $city->city_name }}" data-id="{{ $city->city_id }}">{{ ucwords(strtolower($city->city_name)) }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-message error-kabupaten" style="font-size: 8px; display: none">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md pl-md-1">
+                                    <div class="form-group mb-2">
+                                        <label for="edit-admin-kecamatan" class="text-xs mb-1 text-default font-weight-bold">Kecamatan</label>
+                                        <div class="input-group input-group-merge">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-map-marked-alt icon-kecamatan"></i></span>
+                                            </div>
+                                            <select name="kecamatan" class="form-control" id="edit-admin-kecamatan" disabled required>
+                                                <option value="">- Pilih kecamatan -</option>
+                                            </select>
+                                        </div>
+                                        <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-message error-kecamatan" style="font-size: 8px; display: none">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md pl-md-1">
+                                    <div class="form-group mb-2">
+                                        <label for="edit-admin-kelurahan" class="text-xs mb-1 text-default font-weight-bold">Kelurahan</label>
+                                        <div class="input-group input-group-merge">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-map-marked-alt icon-kelurahan"></i></span>
+                                            </div>
+                                            <select name="kelurahan" class="form-control" id="edit-admin-kelurahan" disabled required>
+                                                <option value="">- Pilih kelurahan -</option>
+                                            </select>
+                                        </div>
+                                        <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-message error-kelurahan" style="font-size: 8px; display: none">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group mb-2">
+                                        <label for="edit-admin-alamat" class="text-xs font-weight-bold text-default mb-1">Alamat</label>
+                                        <textarea name="alamat" id="edit-admin-alamat" class="form-control"></textarea>
+                                        <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-message error-alamat" style="font-size: 8px; display: none">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="row">
+                                <div class="col text-center mb-2">
+                                    <img class="img-thumbnail w-100 preview-avatar" src="{{ asset('images/img-unavailable.png') }}" alt="preview">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="edit-admin-avatar" class="text-xs mb-1 text-dark font-weight-bold" for="edit-admin-avatar">Upload Avatar</label>
+                                        <input type="file" id="edit-admin-avatar" name="avatar" class="form-control form-control-sm" style="padding-top: 1px">
+                                        <div class="font-weight-bolder text-muted pl-1 pt-1 error-message error-password" style="font-size: 8px">
+                                            Abaikan jika tidak ingin merubah gambar
+                                        </div>
+                                        <div class="text-uppercase font-weight-bolder text-danger pl-1 pt-1 error-message error-avatar" style="font-size: 8px; display: none">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col">
+                            <button type="submit" class="btn btn-default btn-block">
+                                <i class="fas fa-pencil-alt mr-2"></i>
+                                Edit
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
     $(document).ready(function () {
@@ -460,6 +710,18 @@
                 e.preventDefault();
                 link = $(this).attr('href')
                 refreshData(link)
+            })
+
+            $(".btn-edit").click(function (e) {
+                e.preventDefault()
+                id = $(this).data('id')
+                url = $(this).data('url')
+                action = $(this).data('action')
+                modalEditAdmin.find("[name='id']").val(id)
+                modalEditAdmin.find("[name='url']").val(url)
+                modalEditAdmin.find("[name='action']").val(action)
+                modalEditAdmin.find('.modal-body > div').css('display', 'flex')
+                modalEditAdmin.modal('show')
             })
         }
 
@@ -611,6 +873,7 @@
                 ctxInput.attr('disabled', 'disabled');
             }
         }
+
         let modalCreateAdmin = $("#modal-create-admin")
         $(".btn-create-admin").click(function (e) {
             e.preventDefault()
@@ -639,6 +902,9 @@
                 $.ajax({
                     type: "POST",
                     url: "{{ route('admin.store') }}",
+                    beforeSend: function (request) {
+                        request.setRequestHeader('X-CSRF-TOKEN', $('meta[name="csrf-token"]').attr('content'));
+                    },
                     data: formData,
                     dataType: "json",
                     contentType: false,
@@ -672,6 +938,114 @@
                 fileAvatar.onload = function(e) {
                     modalCreateAdmin.find('.preview-avatar').attr('src', e.target.result)
                 }
+            })
+        })
+
+        let modalEditAdmin = $("#modal-edit-admin")
+        modalEditAdmin.on('shown.bs.modal', function (e) { 
+            modalEditAdmin.find(`[name='kabupaten']`).val('')
+            id = modalEditAdmin.find("[name='id']").val()
+            url = modalEditAdmin.find("[name='url']").val()
+            $.ajax({
+                type: "GET",
+                url: url,
+                dataType: "json",
+            })
+            .done(function (response) {
+                modalEditAdmin.find('.modal-body > div').hide()
+                modalEditAdmin.find("[name='nama_lengkap']").val(response.nama_lengkap)
+                modalEditAdmin.find(`[name='jenis_kelamin'][value='${response.jenis_kelamin}']`).prop('checked', true)
+                modalEditAdmin.find("[name='username']").val(response.username)
+                modalEditAdmin.find("[name='tempat_lahir']").val(response.tempat_lahir)
+                modalEditAdmin.find("[name='tanggal_lahir']").val(response.tanggal_lahir)
+                modalEditAdmin.find("[name='nomor_hp']").val(response.nomor_hp)
+                modalEditAdmin.find("[name='nomor_ktp']").val(response.nomor_ktp)                    
+                modalEditAdmin.find("[name='alamat']").val(response.alamat)
+                modalEditAdmin.find(".preview-avatar").attr('src', response.avatar_link)
+                if (response.kabupaten != null) {
+                    modalEditAdmin.find(`[name='kabupaten'] option[data-id='${response.city_id}']`).prop('selected', true)
+                    getKecamatan(
+                        response.city_id,
+                        modalEditAdmin.find("[name='kecamatan']"),
+                        modalEditAdmin.find(".icon-kecamatan"),
+                        modalEditAdmin.find("[name='kelurahan']"),
+                        function () {
+                            modalEditAdmin.find(`[name='kecamatan'] option[data-id='${response.dis_id}']`).prop('selected', true)
+                            getKelurahan(
+                                response.dis_id,
+                                modalEditAdmin.find("[name='kelurahan']"),
+                                modalEditAdmin.find(".icon-kelurahan"),
+                                function () {
+                                    modalEditAdmin.find(`[name='kelurahan'] option[data-id='${response.subdis_id}']`).prop('selected', true)
+                                }
+                            )
+                        }
+                    )
+                }
+            })
+
+            modalEditAdmin.find("[name='kabupaten']").unbind('change').change(function (e) {
+                value = $(this).val()
+                id = $(this).find('option:selected').data('id')
+                if (value != '')
+                    getKecamatan(id, modalEditAdmin.find("[name='kecamatan']"), modalEditAdmin.find(".icon-kecamatan"), modalEditAdmin.find("[name='kelurahan']"))
+                else
+                    getKecamatan(-1, modalEditAdmin.find("[name='kecamatan']"), modalEditAdmin.find(".icon-kecamatan"), modalEditAdmin.find("[name='kelurahan']"))
+            })
+            modalEditAdmin.find("[name='kecamatan']").unbind('change').change(function (e) {
+                value = $(this).val()
+                id = $(this).find('option:selected').data('id')
+                if (value != '')
+                    getKelurahan(id, modalEditAdmin.find("[name='kelurahan']"), modalEditAdmin.find(".icon-kelurahan"))
+                else
+                    getKelurahan(-1, modalEditAdmin.find("[name='kelurahan']"), modalEditAdmin.find(".icon-kelurahan"))
+            })
+            modalEditAdmin.find('#edit-admin-avatar').unbind('change').change(function () {
+                const fileAvatar = new FileReader()
+                fileAvatar.readAsDataURL(this.files[0])
+                fileAvatar.onload = function(e) {
+                    modalEditAdmin.find('.preview-avatar').attr('src', e.target.result)
+                }
+            })
+            modalEditAdmin.find("form").unbind('submit').submit(function(e) {
+                e.preventDefault()
+                modalEditAdmin.find('.modal-body > div').show()
+                formData = new FormData(this)
+                url = modalEditAdmin.find("[name='action']").val()
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    beforeSend: function (request) {
+                        request.setRequestHeader('X-CSRF-TOKEN', $('meta[name="csrf-token"]').attr('content'));
+                    },
+                    data: formData,
+                    dataType: "json",
+                    contentType: false,
+                    processData: false,
+                    cache: false
+                })
+                .done(function (response) {
+                    modalEditAdmin.find('.modal-body > div').hide()
+                    $(".filter-berdasarkan[value='username']").prop('checked', true)
+                    $(".filter-pencarian").val(response.data.username)
+                    dataParams.pencarian = response.data.username
+                    dataParams.berdasarkan = 'username'
+                    refreshData()
+                    modalEditAdmin.find('.preview-avatar').attr('src', "{{ asset('images/img-unavailable.png') }}")
+                    modalEditAdmin.find('.error-message').hide()
+                    modalEditAdmin.find('form')[0].reset()
+                    modalEditAdmin.modal('hide')
+                    $(".filter-pencarian").focus()
+                })
+                .fail(function (response) {
+                    Object.entries(response.responseJSON.errors).forEach((error) => {
+                        const [field, message] = error
+                        modalEditAdmin.find('.error-' + field).html(message).show()
+                        modalEditAdmin.animate({
+                            scrollTop: modalEditAdmin.find('.error-' + field).offset().top * -1
+                        }, 1000)
+                    })
+                })
             })
         })
     })

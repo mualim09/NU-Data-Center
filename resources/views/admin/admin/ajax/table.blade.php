@@ -32,16 +32,14 @@
         </td>
         <td style="vertical-align: middle">
             <div class="">
-                <a href="{{ route('admin.data_anggota.edit', ['anggota' => $row->id]) }}" class="btn mr-1 mb-1 btn-secondary rounded rounded-circle btn-sm p-1" data-placement='left' title='Edit'>
+                <a href="#" data-id="{{ $row->id }}" data-action={{ route('admin.update', ['admin' => $row->id]) }} data-url="{{ route('admin.show', ['admin' => $row->id]) }}" class="btn mr-1 mb-1 btn-secondary rounded rounded-circle btn-sm p-1 btn-edit" data-placement='left' title='Edit'>
                     <i class="fas fa-pencil-alt" style="width: 18px"></i>
                 </a>
-                <form action="{{ route('admin.data_anggota.destroy', ['anggota' => $row->id]) }}" method="POST" onsubmit="return confirm('Anda yakin ingin menghapus data ini?')">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn mr-1 mb-1 btn-danger rounded rounded-circle btn-sm p-1" data-placement='left' title='Hapus'>
-                        <i class="fas fa-trash" style="width: 18px"></i>
-                    </button>
-                </form>
+            </div>
+            <div class="">
+                <a href="#" data-id="{{ $row->id }}" data-url="{{ route('admin.destroy', ['admin' => $row->id]) }}" class="btn mr-1 mb-1 btn-danger rounded rounded-circle btn-sm p-1 btn-delete" data-placement='left' title='Hapus'>
+                    <i class="fas fa-trash" style="width: 18px"></i>
+                </a>
             </div>
         </td>
     </tr>

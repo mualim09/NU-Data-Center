@@ -5,10 +5,15 @@ namespace App\Http\Controllers\Resources;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreAdminRequest;
 use App\Http\Requests\StoreAnggotaRequest;
+use App\Http\Requests\UpdateAdminRequest;
 use App\Models\Admin;
+use App\Models\Wilayah\City;
+use App\Models\Wilayah\District;
+use App\Models\Wilayah\SubDistrict;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class AdminResource extends Controller
 {
@@ -99,7 +104,28 @@ class AdminResource extends Controller
      */
     public function show(Admin $admin)
     {
-        //
+        $admin['avatar_link'] = asset($admin->avatar);
+        $city = City::where('city_name', $admin->kabupaten)
+            ->where('prov_id', 15)
+            ->first();
+        $district = District::where('dis_name', $admin->kecamatan);
+        $subDistrict = SubDistrict::where('subdis_name', $admin->kelurahan);
+
+        if ($city != null) {
+            $district->where('city_id', $city->city_id);
+        }
+        $district = $district->first();
+
+        if ($district != null) {
+            $subDistrict->where('dis_id', $district->dis_id);
+        }
+        $subDistrict = $subDistrict->first();
+
+        $admin['city_id'] = ($city != '') ? $city->city_id : -1;
+        $admin['dis_id'] = ($district != '') ? $district->dis_id : -1;
+        $admin['subdis_id'] = ($subDistrict != '') ? $subDistrict->subdis_id : -1;
+
+        return response()->json($admin);
     }
 
     /**
@@ -109,9 +135,39 @@ class AdminResource extends Controller
      * @param  \App\Models\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Admin $admin)
+    public function update(UpdateAdminRequest $request, Admin $admin)
     {
-        //
+        $validatedData = [
+            'username' => $request->username,
+            'password' => Hash::make($request->password),
+            'nama_lengkap' => $request->nama_lengkap,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'tempat_lahir' => $request->tempat_lahir,
+            'tanggal_lahir' => $request->tanggal_lahir,
+            'alamat' => $request->alamat,
+            'kabupaten' => $request->kabupaten,
+            'kecamatan' => $request->kecamatan,
+            'kelurahan' => $request->kelurahan,
+            'nomor_hp' => $request->nomor_hp,
+            'nomor_ktp' => $request->nomor_ktp,
+            'admin_username' => Auth::user()->username
+        ];
+
+        if ($request->hasFile('avatar')) {
+            if ($admin->avatar != 'images/user-default.png') {
+                if (file_exists(public_path() . '/' . $admin->avatar)) {
+                    Storage::delete('admin/avatar/' . basename($admin->avatar));
+                }
+            }
+            $pathFotoDiri = 'storage/' . $request->file('avatar')->store('admin/avatar');
+            $validatedData['avatar'] = $pathFotoDiri;
+        }
+
+        $data = $admin->update($validatedData);
+        return response()->json([
+            'status' => 'success',
+            'data' => $data
+        ]);
     }
 
     /**
