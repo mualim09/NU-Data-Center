@@ -20,6 +20,7 @@ class CreateAdminTable extends Migration
             $table->string('nama_lengkap');
             $table->string('jenis_kelamin');
             $table->text('avatar');
+            $table->string('tempat_lahir');
             $table->date('tanggal_lahir')->nullable();
             $table->text('alamat')->nullable();
             $table->text('kabupaten')->nullable();

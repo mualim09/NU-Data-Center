@@ -20,6 +20,7 @@ class AdminFactory extends Factory
             'nama_lengkap' => $this->faker->name(),
             'jenis_kelamin' => $this->faker->randomElement(['L', 'P']),
             'avatar' => 'images/user-default.png',
+            'tempat_lahir' => $this->faker->city(),
             'tanggal_lahir' => $this->faker->date(),
             'alamat' => $this->faker->address(),
             'kabupaten' => $this->faker->city(),
